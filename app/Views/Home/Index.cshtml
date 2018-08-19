@@ -1,11 +1,11 @@
 ﻿@{
-  var x = 0xffffffff;   // browser displays value  '4,294,967,295'  for "x" variable here -> UNSIGNED integer.
-  int y = 0xf;          // Initialize to a value is NECESSARY. I will get compilation ERROR if I just write:    int y;
-  var z = 0;            // Initialize to a value is NECESSARY. I will get compilation ERROR if I just write:    var z;
-//z = x + 1;      // Compilation ERROR:  somehow the compiler knows that overflow has happened, and gives out  "compilation error".
-  z = y + 2;      // No compilation error -> because no overflow.
-//y = x + 0;      // No compilation error -> because no overflow.
-  z = x - 1;      // No compilation error -> because no overflow.
+  long x = 0xffffffff;   // browser displays value  '4,294,967,295'  for "x" variable here -> UNSIGNED integer.
+  long y = 0xf;          // Initialize to a value is NECESSARY. I will get compilation ERROR if I just write:    int y;
+  long z = 0;            // Initialize to a value is NECESSARY. I will get compilation ERROR if I just write:    var z;
+  z = x + 1;      // Compilation ERROR:  somehow the compiler knows that overflow has happened, and gives out  "compilation error".
+//z = y + 2;      // No compilation error -> because no overflow.
+  y = x + 2;      // Compilation ERROR!   don't know why?
+//z = x - 1;      // Compilation ERROR!   don't know why?
 }
 
 <p>x = @x</p>
