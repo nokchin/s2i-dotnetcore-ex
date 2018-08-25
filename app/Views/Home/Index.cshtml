@@ -1,12 +1,16 @@
 ﻿@{
-var totalMessage = "";
-if(IsPost)
-    {
-    var num1 = Request["text1"];
-    var num2 = Request["text2"];
-    var total = num1.AsInt() + num2.AsInt();
-//  totalMessage = "Total = " + total;
-    }
+
+/*
+@{
+  string totalMessage = "";
+  if(IsPost) {
+    string num1 = Request["text1"];
+    string num2 = Request["text2"];
+    uint n1_len = num1.Length;
+    uint n2_len = num2.Length;
+    uint total = num1.AsInt() + num2.AsInt();
+    totalMessage = "Total = " + total.ToString();
+  }
 }
 
 <form action="" method="post">
@@ -16,8 +20,21 @@ if(IsPost)
 <input type="text" name="text2" /></p>
 <p><input type="submit" value=" Add " /></p>
 </form>
+
 <p>@totalMessage</p>
+Length of 1st number: @n1_len<br>
+Length of 2nd number: @n2_len<br>
+*/
+
+string str1 = 'Hello';
+string str2 = ' world!';
+string str  = str1 + str2;
+
+<p>@str1</p>
+<p>@str2</p>
+<p>@str</p>
 
 
 
 
+}
