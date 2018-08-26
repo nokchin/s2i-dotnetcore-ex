@@ -70,8 +70,8 @@ bits="8c577e17";                       */
       string nonce1 = "fffffffa";   // = 1847177363 (decimal)  ->  2 million less than the required/correct nonce value.   [Other value pairs:  0x6e28f2d3 = 1848177363 (decimal) ]
       string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
-      uint n1 = int.Parse(nonce1, System.Globalization.NumberStyles.HexNumber);
-      uint n2 = int.Parse(nonce2, System.Globalization.NumberStyles.HexNumber);
+      uint n1 = uint.Parse(nonce1, System.Globalization.NumberStyles.HexNumber);
+      uint n2 = uint.Parse(nonce2, System.Globalization.NumberStyles.HexNumber);
 
 
 do {
