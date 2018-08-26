@@ -26,13 +26,61 @@ Length of 1st number: @n1_len<br>
 Length of 2nd number: @n2_len<br>
 */
 
-string str1 = "Hello";
-string str2 = " world!";
-string str  = str1 + str2;
 
-<p>@str1</p>
-<p>@str2</p>
-<p>@str</p>
+
+      uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
+      string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
+      string bits_coef = "0x7e578c";
+      string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
+      string mintime = "d1b45d5a";
+      string bits = "8c577e17";
+
+      uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
+
+
+
+
+/* I use real block #504452  info/data below to test/verify my whole algorithm/flow really works! The required nonce value is 6e383513 (in hex little-endian), which equals to 1849177363 (decimal).
+midstate[0]=0xc022dc5f;
+midstate[1]=0x48274e98;
+midstate[2]=0x6e353555;
+midstate[3]=0x47bfc523;
+midstate[4]=0x4811a092;
+midstate[5]=0x207c9749;
+midstate[6]=0x7657c67e;
+midstate[7]=0x562a335c;
+bits_expo="17";
+bits_coef="0x7e578c";
+merkleroot="76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
+mintime="d1b45d5a";
+bits="8c577e17";                       */
+      // Paste below ....
+
+      // Paste above ....
+
+
+
+
+/*    nonce1 = prompt('Start-count nonce in HEX,  e.g.  fedcba98.  No \'0x\' in front.','');   //use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only.
+      nonce2 = prompt('End-count nonce in HEX,  e.g.  0.  No \'0x\' in front.','');   //use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only.
+      //'0' is a valid end-count value, because incrementing the last count value of 0xffffffff will wrap-around to become '0'. I have tested with real experiment by entering '0' or '1' as end-count value here, and everything works fine.
+*/
+      // nonce1 & nonce2  are hex STRINGs, without the '0x' in front ... just to follow the convention used in 'MineBitcoin1' Javascript code.
+      // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal) .  0x6e19b093 = 1847177363 (decimal) .  0x6e36ae73 = 1849077363 (decimal).  0x6e3527d3 = 1848977363 (decimal).  0x6e321a93 = 1848777363 (decimal)].
+      string nonce1 = "fffffffa";   // = 1847177363 (decimal)  ->  2 million less than the required/correct nonce value.   [Other value pairs:  0x6e28f2d3 = 1848177363 (decimal) ]
+      string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
+
+      uint n1 = int.Parse(nonce1, System.Globalization.NumberStyles.HexNumber);
+      uint n2 = int.Parse(nonce2, System.Globalization.NumberStyles.HexNumber);
+
+
+do {
+  n1++;
+<p>@n1</p>
+  } while ( n1!=n2 );
+
+
+
 
 
 
