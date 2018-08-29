@@ -234,6 +234,8 @@ for (int i=0; i<64; i++) {
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
+            //break 2;    ->  "break 2"  is acceptable in PHP, but NOT in C#.
+            if (nonce2=="0") {m[3]=0xffffffff;} else {m[3]=(uint.Parse(nonce2,System.Globalization.NumberStyles.HexNumber)-1);}
             break;
           }
           else {break;}  //[VERY IMPORTANT]: MUST have ending semicolon at   "break;"  . If not, RedHat OpenShift PHP interpreter will give error.
@@ -640,7 +642,7 @@ for (int i=0; i<64; i++) {
                                //[VERY IMPORTANT]: MUST have ending semicolon at the   "do {} while (...);"   statement. If not, RedHat OpenShift PHP interpreter will give error.
 
     <p>DONE!</p>   //No semicolon here. I have run real PHP experiment on RedHat OpenShift platform, and found that this message is NOT printed out if  'exit(0)' is used.  If  'exit(0)'  is used, only the correct/required nonce value is displayed.
-                   //If  "break 2;"  is used instead of  "exit(0)" , then BOTH the nonce value AND this message will be printed out.
+                   //PHP:  If  "break 2;"  is used instead of  "exit(0)" , then BOTH the nonce value AND this message will be printed out.  [NOTE]: "break 2" works in PHP, but NOT in C#.
 
 //    blocktemplate = new Audio("buzzer_x.wav"); // buffers automatically when created
 //    blocktemplate.play();
