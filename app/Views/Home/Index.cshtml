@@ -121,7 +121,7 @@ for (int i=0; i<64; i++) {
           if (uint.Parse(str.Substring(4,2)+str.Substring(2,2)+str.Substring(0,2),System.Globalization.NumberStyles.HexNumber) < uint.Parse(bits_coef.Substring(2,6),System.Globalization.NumberStyles.HexNumber)) {    //success!
 
             str = m[3].ToString("x8");
-            <p>@str</p>;
+          //<p>@str</p>;
             break 2;
           }
           else {break;}  //[VERY IMPORTANT]: MUST have ending semicolon at   "break;"  . If not, RedHat OpenShift PHP interpreter will give error.
