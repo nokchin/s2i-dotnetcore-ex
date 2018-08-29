@@ -49,7 +49,7 @@ for (int i=0; i<3; i++) {
       midvalue0=blocktemplate;           // reg_a  <-  (T1+T2)
 }
 
-/*
+
 do {
       uint reg_a=midvalue0;   uint reg_b=midvalue1;   uint reg_c=midvalue2;   uint reg_d=midvalue3;
       uint reg_e=midvalue4;   uint reg_f=midvalue5;   uint reg_g=midvalue6;   uint reg_h=midvalue7;
@@ -94,7 +94,8 @@ for (int i=0; i<64; i++) {
 
             str = m[3].ToString("x8");
           //<p>@str</p>;
-            break 2;
+          //break 2;
+            break;
           }
           else {break;}  //[VERY IMPORTANT]: MUST have ending semicolon at   "break;"  . If not, RedHat OpenShift PHP interpreter will give error.
 //      }
@@ -108,7 +109,7 @@ for (int i=0; i<64; i++) {
 
       m[3]=m[3]+1;
   } while (  m[3] != uint.Parse(nonce2,System.Globalization.NumberStyles.HexNumber)   );   //better use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only.
-*/
+
 
     <p>DONE!</p>
 
