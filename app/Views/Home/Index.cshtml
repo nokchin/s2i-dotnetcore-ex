@@ -38,8 +38,9 @@ bits="8c577e17";                       */
 */
       // nonce1 & nonce2  are hex STRINGs, without the '0x' in front ... just to follow the convention used in 'MineBitcoin1' Javascript code.
       // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal) .  0x6e19b093 = 1847177363 (decimal) .  0x6e36ae73 = 1849077363 (decimal).  0x6e3527d3 = 1848977363 (decimal).  0x6e321a93 = 1848777363 (decimal)].
-      string nonce1 = "6e19b093";   // = 1847177363 (decimal)  ->  2 million less than the required/correct nonce value.   [Other value pairs:  0x6e28f2d3 = 1848177363 (decimal) ]
-      string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
+      // [value pairs:  0x5f5e100  = 100 million (decimal) . 0xbebc200  = 200 million (decimal).  ].
+      string nonce1 = "68425413";   // = 1847177363 (decimal)  ->  2 million less than the required/correct nonce value.   [Other value pairs:  0x6e28f2d3 = 1848177363 (decimal) ]
+      string nonce2 = "1";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
       uint[] h = {0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
                   0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
