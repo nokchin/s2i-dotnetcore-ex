@@ -1,6 +1,8 @@
 ﻿<p>Hello there</p>
 
 @{
+if(IsPost) {
+
       uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
       string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
       string bits_coef = "0x7e578c";
@@ -43,7 +45,7 @@ bits="8c577e17";                       */
       // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal) .  0x6e19b093 = 1847177363 (decimal) .  0x6e36ae73 = 1849077363 (decimal).  0x6e3527d3 = 1848977363 (decimal).  0x6e321a93 = 1848777363 (decimal)].
       // [value pairs:  0x5f5e100  = 100 million (decimal) . 0xbebc200  = 200 million (decimal).  ].
       string nonce1 = "6d811a13";   // = 1847177363 (decimal)  ->  2 million less than the required/correct nonce value.   [Other value pairs:  0x6e28f2d3 = 1848177363 (decimal) ]
-      string nonce2 = "1";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
+      string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
       uint[] h = {0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
                   0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
@@ -653,9 +655,14 @@ for (int i=0; i<64; i++) {
 
 
 
-
+}
 }
 
 
 
-<p>Ending ...</p>
+
+<form action="" method="post">
+<p>First Number: <input type="text" name="text1" /></p>
+<p>Second Number:<input type="text" name="text2" /></p>
+<p><input type="submit" value=" Start " /></p>
+</form>
