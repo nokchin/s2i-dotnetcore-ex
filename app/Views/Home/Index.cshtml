@@ -1,8 +1,8 @@
 ﻿<p>Hello there</p>
 
 @{
-string strr = "";
-if(IsPost(strr)) {
+if (HttpRequest.Method=="POST") {      //  https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httprequest.method?view=aspnetcore-2.1#Microsoft_AspNetCore_Http_HttpRequest_Method  .
+                                       //  Refer to:  https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext?view=aspnetcore-2.1  , you can also use:     if (HttpContext.Request.Method=="POST") {...}
 
       uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
       string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
