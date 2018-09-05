@@ -1,21 +1,21 @@
-﻿@page
+﻿@page 
 @{
-    @functions{
-        public string Message { get; set; }
-
-        public void OnGet()
-        {   <p>Get-Used</p>
-            Message = "Get Used";
-        }
-
-        public void OnPost()
-        {   <p>Post-Used</p>
-            Message = "Post used";
-        }
+    var name = string.Empty;
+    if (Request.HasFormContentType)
+    {
+        name = Request.Form["name"];
     }
 }
 
 
-<h3>@Message</h3>
-<form method="post"><button class="btn btn-default">Click to post</button></form>
-<p><a href="/handlerexample" class="btn btn-default">Click to Get</a></p>
+    <form method="post">
+        <div>Name: <input type="text" name="name" /></div>
+        <div><input type="submit" value=" Press " /></div>
+    </form>
+
+<div>
+    @if (!string.IsNullOrEmpty(name))
+    {
+        <p>Hello @name!</p>
+    }
+</div>
