@@ -1,15 +1,15 @@
 ﻿@page
-@{
-    string name = "";
-//  if (Request.HasFormContentType) {
-    if (HttpRequest.Method=="POST") {
-        <p>Form posted!</p>
-//      name = Request.Form["nama"];
-    }
-}
+@using RazorPagesIntro.Pages
+@model IndexModel2
+
+<h2>Separate page model</h2>
+<p>@Model.Message</p>
 
 
-    <form method="post">
-        <div>Name: <input type="text" name="nama" /></div>
-        <div><input type="submit" value=" Press " /></div>
-    </form>
+<form action="" method="post">
+<!--     <p>First Number: <input type="text" name="text1" /></p>     -->
+<!--     <p>Second Number:<input type="text" name="text2" /></p>     -->
+<p><input type="submit" value=" Start " /></p>
+</form>
+
+<p>@Model.result</p>
