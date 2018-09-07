@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RazorPagesIntro.Pages {
-  public class IndexModel2 : PageModel  {
-    public string Message = "PageModel in C#";
-/*  public string Message { get; private set; } = "PageModel in C#";
-
-    public void OnGet() {   Message += $" Server time is { DateTime.Now }";   }    */
-
+namespace LearnRazorPages.Pages {
+  public class IndexModel : PageModel {
+//  public string Message { get; set; } = "PageModel in C#";
+    public string Message = "Original";
+    public void OnGet() {Message="New Message!";}
   }
 }
