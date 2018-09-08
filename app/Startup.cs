@@ -40,7 +40,9 @@ namespace app
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+              //app.UseDeveloperExceptionPage();   //CSGoh: I commented out this original line, and replace it with the two lines below.
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
             else
             {
