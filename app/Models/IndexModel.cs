@@ -1,5 +1,5 @@
 ﻿using System;
-namespace LearnRazorPages.Pages {
+namespace app.Models {
   public class IndexModel {
 //  public string Message { get; set; } = "PageModel in C#";
     public string Message = "Original";
