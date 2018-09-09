@@ -1,4 +1,6 @@
-﻿@model IndexModel
+﻿@page
+@using LearnRazorPages.Pages
+@model IndexModel
 @{
 }
 
