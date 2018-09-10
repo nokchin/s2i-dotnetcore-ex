@@ -44,8 +44,8 @@ namespace app
             }
             else
             {
-              //app.UseExceptionHandler("/Home/Error");
-              //app.UseHsts();
+              //app.UseExceptionHandler("/Home/Error");     //Camilo advises me to comment this out.
+              //app.UseHsts();                              //Camilo advises me to comment this out.
                 app.UseDeveloperExceptionPage();
             }
 

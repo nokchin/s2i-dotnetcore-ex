@@ -12,7 +12,8 @@ namespace app.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+          //return View();                   //CSGoh: I replace this original line with the new line below, to avoid run-time error.
+            return View(new IndexModel);
         }
 
         public IActionResult About()
