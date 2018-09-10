@@ -12,8 +12,8 @@ namespace app.Controllers
     {
         public IActionResult Index()
         {
-          //return View();                   //CSGoh: I replace this original line with the new line below, to avoid run-time error.
-            return View(new IndexModel);
+          //return View();                    //CSGoh: I replace this original line with the new line below, to avoid run-time error.
+            return View(new IndexModel { });  //A new expression requires (), [], or {} after type;  if not, got compilation error!
         }
 
         public IActionResult About()
