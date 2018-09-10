@@ -7,6 +7,7 @@ namespace app.Models
         public string RequestId { get; set; }
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
+        // CSGoh stuff are added below.
         public string Message = "Hello there!";
     }
 }

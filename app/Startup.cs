@@ -40,13 +40,13 @@ namespace app
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();            //CSGoh: this will display the full details of any run-time error.
             }
             else
             {
               //app.UseExceptionHandler("/Home/Error");     //Camilo advises me to comment this out.
               //app.UseHsts();                              //Camilo advises me to comment this out.
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();            //CSGoh: Add this line here. This will display the full details of any run-time error.
             }
 
             app.UseHttpsRedirection();
