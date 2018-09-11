@@ -1,4 +1,7 @@
 using System;
+using Microsoft.AspNetCore.Mvc;                //CSGoh: I add in this line.
+using Microsoft.AspNetCore.Mvc.RazorPages;     //CSGoh: I add in this line.
+
 
 namespace app.Models
 {
@@ -10,8 +13,8 @@ namespace app.Models
         // CSGoh stuff are added below.
         public string Message = "Hello there!";
         public uint abc = 10;
-        public void OnPost() {
-          while (true) {}
+        public PageResult OnPost() {
+          while (true) {}      //not executed... don't know why?
           abc++;
           Message = "Button pressed!";
         }
