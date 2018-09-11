@@ -11,7 +11,7 @@ namespace app.Models
         public string Message = "Hello there!";
         public uint abc = 10;
         public void OnPost() {
-          while (1) {}
+          while (true) {}
           abc++;
           Message = "Button pressed!";
         }
