@@ -9,7 +9,7 @@ namespace app.Models
 
         // CSGoh stuff are added below.
         public string Message = "Hello there!";
-        public uint abc = 0;
+        public static uint abc = 10;
         public void OnPost() {
           abc++;
           Message = "Button pressed!";
