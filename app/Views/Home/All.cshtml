@@ -1,9 +1,14 @@
-﻿@{
+﻿@page
+@using app.Controllers
+@{
 }
 
 
 
 The cats are:
-@foreach (var cat in HomeController.Cats()) {
+@{
+foreach (var cat in HomeController.Cats()) {
     <li>@cat</li>
+}
+
 }
