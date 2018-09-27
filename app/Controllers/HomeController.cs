@@ -36,10 +36,12 @@ namespace app.Controllers {
         // CSGoh: added all my own stuff below .....
         private static Dictionary<string, string> _Cats = new Dictionary<string, string>();
         public static string[] Cats() {return _Cats.Keys.ToArray();}    //CSGoh:  this  Cats()  is actually a 'Method'.
+        public static uint count = 5;
 
         public IActionResult All() {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
+            count++;
             return View();
         }
 
