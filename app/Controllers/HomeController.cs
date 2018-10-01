@@ -40,7 +40,7 @@ namespace app.Controllers {
         public static string gabc;
 
         [HttpGet("home/all/{abc}")]
-        public IActionResult All(string abc=null) {
+        public IActionResult All(string abc) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
             gabc = abc;
