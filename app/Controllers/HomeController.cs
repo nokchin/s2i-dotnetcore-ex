@@ -37,12 +37,15 @@ namespace app.Controllers {
         private static Dictionary<string, string> _Cats = new Dictionary<string, string>();
         public static string[] Cats() {return _Cats.Keys.ToArray();}    //CSGoh:  this  Cats()  is actually a 'Method'.
         public static uint count = 5;
+        public static string gabc;
 
-        public IActionResult All() {
+        [HttpGet("home/all/{abc}")]
+        public IActionResult All(string abc=null) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
+            gabc = abc;
             count++;
-            return View();
+            if (abc != null) {return View();}
         }
 
     }
