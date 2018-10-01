@@ -36,17 +36,19 @@ namespace app.Controllers {
         // CSGoh: added all my own stuff below .....
         private static Dictionary<string, string> _Cats = new Dictionary<string, string>();
         public static string[] Cats() {return _Cats.Keys.ToArray();}    //CSGoh:  this  Cats()  is actually a 'Method'.
-        public static uint count = 5;
-        public static string gabc;
+        public static uint hit_count = 5;
+        public static uint site_count = 5;
+        public static string httpget;
+
+        public IActionResult All() {hit_count++; return View();}
 
         [HttpGet("{abc}")]
         public IActionResult All(string abc) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
-          //gabc = abc;
-            count++;
-          //if (abc != null) {return View();}
-            return View();
+            httpget = abc;
+            site_count++;
+            if (httpget != "x") {return View();}
         }
 
     }
