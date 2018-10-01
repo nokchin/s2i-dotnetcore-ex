@@ -40,7 +40,7 @@ namespace app.Controllers {
         public static uint site_count = 5;
         public static string httpget;
 
-        public IActionResult All() {hit_count++; return View();}
+      //public IActionResult All() {hit_count++; return View();}
 
         [HttpGet("{abc}")]
         public IActionResult All(string abc) {
