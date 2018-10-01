@@ -38,7 +38,7 @@ namespace app.Controllers {
         public static string[] Cats() {return _Cats.Keys.ToArray();}    //CSGoh:  this  Cats()  is actually a 'Method'.
         public static uint hit_count = 5;
         public static uint site_count = 5;
-        private static string httpget;
+        public static string httpget;
 
       //public IActionResult All() {hit_count++; return View();}
 
@@ -46,9 +46,9 @@ namespace app.Controllers {
         public IActionResult All(string abc) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
-            httpget = abc;
+          //httpget = abc;
             site_count++;
-            if (httpget != "x") {return View();}
+            if (abc != "x") {return View();}
         }
 
     }
