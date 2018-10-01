@@ -40,12 +40,13 @@ namespace app.Controllers {
         public static string gabc;
 
         [HttpGet("home/all/{abc}")]
-        public IActionResult All(string abc) {
+        public IActionResult All() {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
-            gabc = abc;
+          //gabc = abc;
             count++;
-            if (abc != null) {return View();}
+          //if (abc != null) {return View();}
+            return View();
         }
 
     }
