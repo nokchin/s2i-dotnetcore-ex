@@ -39,8 +39,8 @@ namespace app.Controllers {
         public static uint count = 5;
         public static string gabc;
 
-        [HttpGet("home/all/{abc}")]
-        public IActionResult All() {
+        [HttpGet("{abc}")]
+        public IActionResult All(string abc) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
           //gabc = abc;
