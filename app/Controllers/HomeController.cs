@@ -40,15 +40,16 @@ namespace app.Controllers {
         public static uint site_count = 5;
         public static string httpget;
 
-        public IActionResult All() {hit_count++;  return View();}
-
-      //public IActionResult All() {hit_count++; return View();}
+        public IActionResult All() {
+          hit_count++;
+          return View();   //CSGoh: At first I omit/exclude this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
+        }
 
         [HttpGet("{abc}")]
-        public IActionResult All(string def) {
+        public IActionResult All(string abc) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
-          //httpget = abc;
+            httpget = abc;
             site_count++;
           //if (abc != "x") {return View();}
             return View();
