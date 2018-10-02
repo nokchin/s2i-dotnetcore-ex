@@ -49,9 +49,15 @@ namespace app.Controllers {
         public IActionResult All(string abc) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
-            httpget = abc;
+            httpget = abc;   //CSGoh:  Special characters like:   !@$%^&*()+_=-~`"':;<>,.{}[]|   are all acceptable.  But special characters like:   #?/\   are not acceptable.
             site_count++;
-          //if (abc != "x") {return View();}
+          //if (abc != "x") {return View();}    //CSGoh: At first I write the  "return View()"  like this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
+            return View();
+        }
+
+        [HttpGet("add/{cat}")]
+        public IActionResult All(string cat, string sound) {
+            _Cats[cat] = sound;
             return View();
         }
 
