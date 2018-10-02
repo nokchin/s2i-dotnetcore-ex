@@ -34,7 +34,7 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below .....
-        private static Dictionary<string, string> _Cats = new Dictionary<string, string>();
+        public static Dictionary<string, string> _Cats = new Dictionary<string, string>();
         public static string[] Cats() {return _Cats.Keys.ToArray();}    //CSGoh:  this  Cats()  is actually a 'Method'.
         public static uint hit_count = 5;
         public static uint site_count = 5;
@@ -57,7 +57,7 @@ namespace app.Controllers {
 
         [HttpGet("add/{cat}")]
         public IActionResult All(string cat, string sound) {
-            _Cats[cat] = sound;
+            _Cats[cat] = sound;     // you can go to   .../add/paul?sound=Purr   to add a new cat called 'Paul'.
             return View();
         }
 
