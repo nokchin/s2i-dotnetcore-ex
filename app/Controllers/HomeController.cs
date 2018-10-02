@@ -43,12 +43,13 @@ namespace app.Controllers {
       //public IActionResult All() {hit_count++; return View();}
 
         [HttpGet("{abc}")]
-        public IActionResult All(string abc) {
+        public IActionResult All(string def) {
             _Cats["bill"] = "Meow!";
             _Cats["steve"] = "Hiss!";
           //httpget = abc;
             site_count++;
-            if (abc != "x") {return View();}
+          //if (abc != "x") {return View();}
+            return View();
         }
 
     }
