@@ -8,7 +8,7 @@
 The cats are:
 @{
 foreach (var cat in HomeController.Cats()) {
-    <li>@cat ->  </li>
+    <li>@cat ->  @HomeController._Cats[@cat]</li>
 }
 
 }

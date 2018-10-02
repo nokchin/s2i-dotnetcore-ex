@@ -34,7 +34,8 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below .....
-        public static Dictionary<string, string> _Cats = new Dictionary<string, string>();
+        public static Dictionary<string, string> _Cats = new Dictionary<string, string>();    //CSGoh: at first I use 'private' instead of 'public' here, and all my programs
+                       // below also/still work fine.  But LATER I want my .cshtml to access this  _Cats  variable directly from .cshtml, so I need to use 'public' here.
         public static string[] Cats() {return _Cats.Keys.ToArray();}    //CSGoh:  this  Cats()  is actually a 'Method'.
         public static uint hit_count = 5;
         public static uint site_count = 5;
