@@ -13,11 +13,10 @@ foreach (var cat in HomeController.Cats()) {
 
 }
 
-site_count:<br>
-@HomeController.site_count
 <br>
-hit_count:<br>
-@HomeController.hit_count
+site_count: @HomeController.site_count
 <br>
-HttpGet string:<br>
-@HomeController.httpget
+hit_count: @HomeController.hit_count
+<br>
+HttpGet string: @HomeController.httpget
+<br>

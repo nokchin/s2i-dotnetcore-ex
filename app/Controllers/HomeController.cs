@@ -43,12 +43,14 @@ namespace app.Controllers {
 
 
         //CSGoh: At first I don't place/insert any parameter into All() below, and I get this compilation error:  Type 'HomeController' already defines a member called 'All' with the same parameter types.
+        //       So, I just insert a dummy/unused parameter  "int a"  into All() below to overcome the above compilation error. 
         [HttpGet("no_view")]
         public uint All(int a) {     //At first I don't put  'uint'  as the return-type here, and I get two compilation errors below:
                                      //       1.  Method must have a return type.
                                      //       2.  Attribute 'HttpGet' is not valid on this declaration type. It is only valid on 'method' declarations.
           site_count++;
-          return 0;       //No need  "return View()"  in this code-block, because  'IActionResult'  return-type is not declared/used for this Method.
+          return 0;     //No need  "return View()"  in this code-block, because  'IActionResult'  return-type is not declared/used for this Method.
+                        //[IMPORTANT]: In fact, when I use/write  "return 0"  here, I observe the/a  '0'  character being displayed at the browser!
         }
 
         public IActionResult All() {
