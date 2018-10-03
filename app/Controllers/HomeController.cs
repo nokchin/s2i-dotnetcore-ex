@@ -43,7 +43,8 @@ namespace app.Controllers {
 
         public IActionResult All() {
           hit_count++;
-          return View();   //CSGoh: At first I omit/exclude this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
+        //return View();   //CSGoh: At first I omit/exclude this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
+          return 0;
         }
 
         [HttpGet("{abc}")]
