@@ -80,7 +80,7 @@ bits="8c577e17";                       */
       // nonce1 & nonce2  are hex STRINGs, without the '0x' in front ... just to follow the convention used in 'MineBxxxxxx1' Javascript code.
       // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal) .  0x6e19b093 = 1847177363 (decimal) .  0x6e36ae73 = 1849077363 (decimal).  0x6e3527d3 = 1848977363 (decimal).  0x6e321a93 = 1848777363 (decimal)].
       // [value pairs:  0x5f5e100  = 100 million (decimal) . 0xbebc200  = 200 million (decimal).  ].
-      string nonce1 = "6d811a13";   //  [Other value pairs:  0x6e28f2d3 = 1848177363 (decimal, 1-million less than the desired/correct nonce).  0x6d811a13 = 18337177363 (decimal, 12-million less than the correct/desired nonce). ]
+      string nonce1 = "6d811a13";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal, 1-million less).  0x6d811a13 = 18337177363 (decimal, 12-million less). ]
       string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
       uint[] h = {0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
@@ -271,7 +271,7 @@ for (int i=0; i<64; i++) {
 
 //Javascript:    for (j=0; j<29; j+=4) {  document.write( ((m[3] >>> (28-j)) & 15).toString(16) )  }     //display in hex little-endian. No need to do endianness byte-swap ... just copy exactly whatever displayed here and insert it into the 4-byte nonce field of the header inputs (also in hex little endian) and do submitblock.
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
-            result = m[3].ToString("x8");     // the correct nonce value that is wanted.
+            result = m[3].ToString("x8");     // the correct/desired nonce value.  At first I write  "return m[3].ToString("x8");"  here, and I get this compilation error:   HomeController.All()  not all code paths return a value.
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
