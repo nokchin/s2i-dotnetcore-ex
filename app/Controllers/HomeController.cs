@@ -40,6 +40,8 @@ namespace app.Controllers {
 
         [HttpGet("btc")]
         public string All(int aabbcc , int xxyyzz) {
+      string result;      // the correct nonce value that is wanted.
+
       uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
       string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
       string bits_coef = "0x7e578c";
@@ -269,7 +271,7 @@ for (int i=0; i<64; i++) {
 
 //Javascript:    for (j=0; j<29; j+=4) {  document.write( ((m[3] >>> (28-j)) & 15).toString(16) )  }     //display in hex little-endian. No need to do endianness byte-swap ... just copy exactly whatever displayed here and insert it into the 4-byte nonce field of the header inputs (also in hex little endian) and do submitblock.
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
-            return  m[3].ToString("x8");     // the correct nonce value that is wanted.
+            result = m[3].ToString("x8");     // the correct nonce value that is wanted.
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
@@ -683,6 +685,7 @@ for (int i=0; i<64; i++) {
 
 //    blocktemplate = new Audio("buzzer_x.wav"); // buffers automatically when created
 //    blocktemplate.play();
+      return result;
         }
 
 
@@ -721,7 +724,7 @@ for (int i=0; i<64; i++) {
 
         public IActionResult All() {
           hit_count++;
-          return View();   //CSGoh: At first I omit/exclude this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
+          return View();   //CSGoh: At first I omit/exclude this line, and I get this compilation error:    HomeController.All()  not all code paths return a value.
         //return 0;        //CSGoh: If I use this line instead of  "return View()" , I get this compilation error:  Cannot implicitly convert type 'int' to 'Microsoft.AspNetCore.Mvc.IActionResult' .
         }
 
@@ -731,7 +734,7 @@ for (int i=0; i<64; i++) {
             _Cats["steve"] = "Hiss!";
             httpget = abc;   //CSGoh:  Special characters like:   !@$%^&*()+_=-~`"':;<>,.{}[]|   are all acceptable.  But special characters like:   #?/\   are not acceptable.
             site_count++;
-          //if (abc != "x") {return View();}    //CSGoh: At first I write the  "return View()"  like this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
+          //if (abc != "x") {return View();}    //CSGoh: At first I write the  "return View()"  like this line, and I get this compilation error:    HomeController.All()  not all code paths return a value.
             return View();
         }
 
