@@ -41,10 +41,16 @@ namespace app.Controllers {
         public static uint site_count = 5;
         public static string httpget;
 
+
+        [HttpGet("no_view")]
+        public All() {      //no need  "return View()"  in this code-block, because there is no  'IActionResult'  here.
+          site_count++;
+        }
+
         public IActionResult All() {
           hit_count++;
-        //return View();   //CSGoh: At first I omit/exclude this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
-          return 0;
+          return View();   //CSGoh: At first I omit/exclude this line, and I get compilation error (something like this):  HomeController.All not returning any value ....
+        //return 0;        //CSGoh: If I use this line instead of  "return View()" , I get this compilation error:  Cannot implicitly convert type 'int' to 'Microsoft.AspNetCore.Mvc.IActionResult' .
         }
 
         [HttpGet("{abc}")]
