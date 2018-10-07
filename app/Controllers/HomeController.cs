@@ -747,7 +747,8 @@ for (int i=0; i<64; i++) {
         [HttpPost("")]
         public IActionResult All(string name, string sound, int aabbcc) {    // the dummy/unused  'aabbcc'  parameter is used here to differentiate this method from the previous All() method. If not, I get this compilation error:   Type 'HomeController' already defines a member called 'All' with the same parameter types.
           _Cats[name] = sound;
-          return Redirect("");
+        //return Redirect("");   //At first I put a null/empty string inside the Redirect("") , and I get this RUNTIME error:    ArgumentException - Value cannot be null or empty.  Parameter name: url.  Microsoft.AspNetCore.Mvc.ControllerBase.Redirect(string url).
+          return View();
         }
 
     }
