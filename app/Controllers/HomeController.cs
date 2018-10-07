@@ -744,5 +744,11 @@ for (int i=0; i<64; i++) {
             return View();
         }
 
+        [HttpPost("")]
+        public IActionResult All(string name, string sound) {
+          _Cats[name] = sound;
+          return Redirect("");
+        }
+
     }
 }
