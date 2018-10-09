@@ -32,6 +32,7 @@ namespace app
 //  http://www.dotnet-stuff.com/tutorials/aspnet-mvc/understanding-asp-net-mvc-filters-and-attributes     <---
 //  https://www.itprotoday.com/web-development/attributes-controller
 //  https://www.codeproject.com/Tips/1032266/MVC-Attributes
+//  https://blogs.msdn.microsoft.com/aspnetue/2010/02/24/attributes-and-asp-net-mvc/
 
 /*  https://msdn.microsoft.com/en-us/library/ms243175.aspx
 Add the Timeout attribute to each test. The parameter is in milliseconds. For example:
@@ -42,3 +43,6 @@ public void MyTestMethod()
 }
 
 */
+
+//  https://wcfbiztalk.wordpress.com/2017/12/26/increase-timeout-for-asp-net-core-applications/   <- Good ! !
+//  https://forums.asp.net/t/2135665.aspx?add+requestTimeout+in+web+config
