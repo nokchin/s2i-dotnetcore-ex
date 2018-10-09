@@ -749,8 +749,9 @@ for (int i=0; i<64; i++) {
           _Cats[name] = sound;
         //return Redirect("abcdefghi");   //At first I put a null/empty string inside the Redirect("") , and I get this RUNTIME error:    ArgumentException - Value cannot be null or empty.  Parameter name: url.  Microsoft.AspNetCore.Mvc.ControllerBase.Redirect(string url).
                                           //The effect of this  Redirect("abcdefghi")  is that the page at the  [HttpGet("{abc}")]  section above will be loaded, with parameter 'abc'  taking the value of "abcdefghi" . Hence it is equivalent to entering   ...{Home Page URL}.../abcdefghi   into the browser's URL-address bar/space.
-          return Redirect("https://www.google.com/");
-        //return View();
+        //return Redirect("https://www.google.com/");   //The effect of this  Redirect("https://www.google.com/")  is that the Google home-page will be loaded. The difference between this Redirect() versus the above Redirect() is that this Redirect() begins with  "https://..."  in its URL string.  Hence, this Redirect()
+                                                        //is called 'absolute redirect' , whereas the above Redirect() is called 'relative redirect'.  I believe the HTML tag:    <a href="....Absolute or Relative URL string....">WebPage-Link</a>     works the same way.
+          return View();
         }
 
     }
