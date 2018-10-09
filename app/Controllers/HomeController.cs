@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using app.Models;
 
 namespace app.Controllers {
-    public class HomeController : Controller {
+    public class HomeController : Controller , WebRequest {
         public IActionResult Index() {
           //return View();  //CSGoh: I replace this original line with the new line below, to avoid run-time error if PageModel is used in  Index.cshtml.
             return View(new ErrorViewModel { Message = "Second Hello!" });  //A new expression requires (), [], or {} after type;  if not, got compilation error!
