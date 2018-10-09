@@ -19,10 +19,10 @@ namespace app
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            //  .UseStartup<Startup>();    //CSGoh: replace this original line with the three lines below ...
-                .UseStartup<Startup>()
-                .UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30); })
-                .Build();
+                .UseStartup<Startup>();    //CSGoh: replace this original line with the three lines below ...
+            //  .UseStartup<Startup>()
+            //  .UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30); })
+            //  .Build();
     }
 }
 
