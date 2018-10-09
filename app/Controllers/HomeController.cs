@@ -40,6 +40,7 @@ namespace app.Controllers {
 
         [HttpGet("btc")]
         public string All(int aabbcc , int xxyyzz) {   // 'aabbcc' & 'xxyyzz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
+      this.Timeout = -1;       // -1  means infinite timeout.
       string result = "";      // the correct nonce value that is wanted.
 
       uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
