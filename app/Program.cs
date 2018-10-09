@@ -28,3 +28,17 @@ namespace app
 
 
 //  https://stackoverflow.com/questions/37474309/timeouts-with-long-running-asp-net-mvc-core-controller-httppost-method
+//  https://stackoverflow.com/questions/38698350/increase-upload-file-size-in-asp-net-core   [RequestSizeLimit(100_000_000)]  [DisableRequestSizeLimit]
+//  http://www.dotnet-stuff.com/tutorials/aspnet-mvc/understanding-asp-net-mvc-filters-and-attributes     <---
+//  https://www.itprotoday.com/web-development/attributes-controller
+//  https://www.codeproject.com/Tips/1032266/MVC-Attributes
+
+/*  https://msdn.microsoft.com/en-us/library/ms243175.aspx
+Add the Timeout attribute to each test. The parameter is in milliseconds. For example:
+[TestMethod(), Timeout(80)]
+public void MyTestMethod()  
+{  
+// test code  
+}
+
+*/
