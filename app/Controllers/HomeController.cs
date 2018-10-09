@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;   //CSGoh: add in this line. If not, I get this compilation error:   the type or namespace name 'WebRequest' could not be found (are you missing a using directive or an assembly reference?) .
-using System.Net.HttpWebRequest;    //CSGoh: add in this line. If not,  "this.Timeout"  will not work below.
+//using System.Net.HttpWebRequest;        //CSGoh: I get this compilation error here:    A 'using namespace' directive can only be applied to namespaces; 'HttpWebRequest' is a type not a namespace. Consider a 'using static' directive instead.
+using static System.Net.HttpWebRequest;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
