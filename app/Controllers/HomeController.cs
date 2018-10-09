@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;   //CSGoh: add in this line. If not, I get this compilation error:   the type or namespace name 'WebRequest' could not be found (are you missing a using directive or an assembly reference?) .
+using System.Net.HttpWebRequest;    //CSGoh: add in this line. If not,  "this.Timeout"  will not work below.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using app.Models;
 
 namespace app.Controllers {
-    public class HomeController : Controller, WebRequest {          //CSGoh: add in 'WebRequest' .
+    public class HomeController : Controller {     //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
         public IActionResult Index() {
           //return View();  //CSGoh: I replace this original line with the new line below, to avoid run-time error if PageModel is used in  Index.cshtml.
             return View(new ErrorViewModel { Message = "Second Hello!" });  //A new expression requires (), [], or {} after type;  if not, got compilation error!
