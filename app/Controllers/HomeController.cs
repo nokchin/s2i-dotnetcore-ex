@@ -43,7 +43,7 @@ namespace app.Controllers {
         [HttpGet("btc")]
         public string All(int aabbcc , int xxyyzz) {   // 'aabbcc' & 'xxyyzz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
     //this.Timeout = -1;       // -1  means infinite timeout.
-      WebRequest myWebRequest = WebRequest.Create("btc");
+      WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/btc");
       myWebRequest.Timeout = -1;
       string result = "";      // the correct nonce value that is wanted.
 
