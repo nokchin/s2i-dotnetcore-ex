@@ -19,6 +19,12 @@ namespace app
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            //  .UseStartup<Startup>();    //CSGoh: replace this original line with the three lines below ...
+                .UseStartup<Startup>()
+                .UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30); })
+                .Build();
     }
 }
+
+
+//  https://stackoverflow.com/questions/37474309/timeouts-with-long-running-asp-net-mvc-core-controller-httppost-method
