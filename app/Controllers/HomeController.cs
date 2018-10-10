@@ -40,8 +40,8 @@ namespace app.Controllers {
 
         // CSGoh: added all my own stuff below ........
 
+//      [TestMethod(), Timeout(-1)]
         [HttpGet("btc")]
-        [TestMethod(), Timeout(-1)]
         public string All(int aabbcc , int xxyyzz) {   // 'aabbcc' & 'xxyyzz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
 //this.Timeout = -1;       // -1  means infinite timeout.
 //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/btc");
