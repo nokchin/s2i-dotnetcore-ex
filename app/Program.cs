@@ -27,6 +27,7 @@ namespace app
 }
 
 
+//  https://jeremylindsayni.wordpress.com/2016/05/28/how-to-set-a-maximum-time-to-allow-a-c-function-to-run-for/
 //  https://stackoverflow.com/questions/37474309/timeouts-with-long-running-asp-net-mvc-core-controller-httppost-method
 //  https://stackoverflow.com/questions/38698350/increase-upload-file-size-in-asp-net-core   [RequestSizeLimit(100_000_000)]  [DisableRequestSizeLimit]
 //  http://www.dotnet-stuff.com/tutorials/aspnet-mvc/understanding-asp-net-mvc-filters-and-attributes     <---
