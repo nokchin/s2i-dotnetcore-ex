@@ -43,7 +43,7 @@ namespace app
         services.AddSession(options =>
         {
             // Set a short timeout for easy testing.
-            options.IdleTimeout = TimeSpan.FromSeconds(10);
+            options.IdleTimeout = TimeSpan.FromSeconds(10);   //CSGoh: I think there are also things like  .FromMinutes()  &  .FromHours()  .
             options.Cookie.HttpOnly = true;
         });
 */
