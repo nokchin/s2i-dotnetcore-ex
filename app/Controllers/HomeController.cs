@@ -45,8 +45,13 @@ namespace app.Controllers {
 
         public static string BtcVoid = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btcvoid")]  attribute).
 
-        [HttpGet("btcvoid")]
-        public void All(int abc , int def , int xyz) {    // 'abc' , 'def' & 'xyz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
+        //CSGoh: I performed an experiment in which I choose a  nonce1  value that causes the Method below to run too long and produces the
+        //       "504 Timeout Error".  After the "504 Timeout Error" appeared, I waited for some additional/extra time/moment to ensure this Method finishes
+        //       running, and then checked the value of 'BtcVoid' string variable, and found that 'BtcVoid' really contains the desired nonce value!  So
+        //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
+//      [HttpGet("btcvoid")]
+//      public void All(int abc , int def , int xyz) {    // 'abc' , 'def' & 'xyz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
+        public void btcvoid() {
       BtcVoid = "";      // reset BtcVoid to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
 
       uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
@@ -692,7 +697,7 @@ for (int i=0; i<64; i++) {
 
 //    blocktemplate = new Audio("buzzer_x.wav"); // buffers automatically when created
 //    blocktemplate.play();
-    //return BtcVoid;        // ------ NO NEED TO DO ANY  'RETURN'  HERE, BECAUSE THIS METHOD IS DEFINED AS  "VOID"  TYPE ------ //
+    //return BtcVoid;        // ------ NO NEED  'RETURN'  HERE, BECAUSE THIS METHOD IS DEFINED AS  "VOID"  TYPE.  NO COMPILATION ERROR. ------ //
         }
 
 
