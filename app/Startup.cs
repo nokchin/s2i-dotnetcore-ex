@@ -45,9 +45,10 @@ namespace app
             options.Cookie.HttpOnly = true;
         });
 */
+/* CSGoh: I've tried the below, but it does not help in solving the  "504 Gateway Timeout"  error issue ...
         services.AddSession(options => {
             options.IdleTimeout = TimeSpan.FromHours(23);
-        });
+        });           */
 
 
 
