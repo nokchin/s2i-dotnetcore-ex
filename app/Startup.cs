@@ -77,8 +77,8 @@ namespace app
             {
                 routes.MapRoute(
                     name: "default",
-                  //template: "{controller=Home}/{action=Index}/{id?}");    //CSGoh: this is the original line. It will run  'Index.cshtml' .  -> HomeController_org.cs
-                  //template: "{controller=Home}/{action=All}/{id?}");      //CSGoh: this is my line. It will run  'All.cshtml' .              -> HomeController_org.cs
+                  //template: "{controller=Home}/{action=Index}/{id?}");    //CSGoh: this is the original line. It will run  'Index.cshtml' .  -> HomeController.cs.org
+                  //template: "{controller=Home}/{action=All}/{id?}");      //CSGoh: this is my line. It will run  'All.cshtml' .              -> HomeController.cs.org
                     template: "{controller=Home}/{action=Mine}/{id?}");     //CSGoh: this is my line. It will run  'Mine.cshtml' .             -> HomeController.cs
             });
         }
