@@ -51,7 +51,7 @@ namespace app.Controllers {
         //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
 //      [HttpGet("btcvoid")]
 //      public void All(int abc , int def , int xyz) {    // 'abc' , 'def' & 'xyz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
-        public void btcvoid() {
+        public static void btcvoid() {    //CSGoh: If I don't use 'static' here, I get this compilation error:   An object reference is required for the non-static field, method, or property.
       BtcVoid = "";      // reset BtcVoid to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
 
       uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
