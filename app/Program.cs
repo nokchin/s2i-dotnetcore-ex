@@ -27,7 +27,7 @@ namespace app
 }
 
 
-//** https://docs.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr
+// ** https://docs.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr
           ->  https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-2.1&tabs=visual-studio
           ->  https://docs.microsoft.com/en-us/aspnet/core/signalr/index?view=aspnetcore-2.1
 //  https://stackoverflow.com/questions/49816245/asp-net-core-2-1-server-timeout-while-debugging  <-- VERY GOOD!
