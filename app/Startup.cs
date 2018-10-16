@@ -37,16 +37,18 @@ namespace app
    Note:  Session isn't supported in SignalR apps because a SignalR Hub may execute independent of an HTTP context. For example, this can occur when a
           long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
 
-
         services.AddDistributedMemoryCache();
 
-        services.AddSession(options =>
-        {
+        services.AddSession(options => {
             // Set a short timeout for easy testing.
             options.IdleTimeout = TimeSpan.FromSeconds(10);   //CSGoh: I think there are also things like  .FromMinutes()  &  .FromHours()  .
             options.Cookie.HttpOnly = true;
         });
 */
+        services.AddSession(options => {
+            options.IdleTimeout = TimeSpan.FromHours(23);
+        });
+
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
