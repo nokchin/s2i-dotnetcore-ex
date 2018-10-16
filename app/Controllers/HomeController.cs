@@ -49,9 +49,12 @@ namespace app.Controllers {
         //       "504 Timeout Error".  After the "504 Timeout Error" appeared, I waited for some additional/extra time/moment to ensure this Method finishes
         //       running, and then checked the value of 'BtcVoid' string variable, and found that 'BtcVoid' really contains the desired nonce value!  So
         //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
-//      [HttpGet("btcvoid")]
-//      public void All(int abc , int def , int xyz) {    // 'abc' , 'def' & 'xyz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
-        public static void btcvoid() {    //CSGoh: If I don't use 'static' here, I get this compilation error:   An object reference is required for the non-static field, method, or property.
+        [HttpGet("btcvoid")]
+        public void All(int abc , int def , int xyz) {    // 'abc' , 'def' & 'xyz'  are dummy/unused parameter variables -> to differentiate this Method from the rest of other All() Methods below so that there is no compilation error.
+
+      //CSGoh: the line below can be used to replace the above TWO lines so that we can invoke/call this Method in the 'All.cshtml' file using Razor code like this:   @{HomeController.btcvoid();}  . It is just like calling the  @{HomeController.Cats();}  Method in 'All.cshtml' .
+//      public static void btcvoid() {    //CSGoh: If I don't use 'static' here, I get this compilation error:   An object reference is required for the non-static field, method, or property.
+
       BtcVoid = "";      // reset BtcVoid to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
 
       uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
