@@ -44,18 +44,26 @@ namespace app.Controllers {
         // CSGoh: added all my own stuff below ........
 
         public static uint loopcount = 0;
+        public static uint run = 0;  // 0 - STOP  .   1 - running .
 
         [HttpGet("firstloop")]
-        public void Mine() {
-          while (true) {
+        public void Mine() {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
+          run=1;
+          while (run==1) {      // while (true) {
             loopcount++;
-            if (loopcount>11) {loopcount=0;}
+            if (loopcount>41) {loopcount=0;}
           }
+          loopcount=0;  //this line is very important. Because exiting (getting out of) the loop above means that someone had pressed the 'STOP' button... so loopcount has to be reset to '0'.
         }
 
         [HttpGet("checkalive")]
-        public uint Mine(int aabbcc) {
+        public uint Mine(int abc) {
           return loopcount;
+        }
+
+        [HttpGet("stop")]
+        public void Mine(int abc, int def) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
+          run=0;
         }
 
     }
