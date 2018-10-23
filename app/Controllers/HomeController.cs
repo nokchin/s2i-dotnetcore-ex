@@ -42,6 +42,7 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below ........
+        public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute).
 
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
@@ -56,9 +57,15 @@ namespace app.Controllers {
           loopcount=0;  //this line is very important. Because exiting (getting out of) the loop above means that someone had pressed the 'STOP' button... so loopcount has to be reset to '0'.
         }
 
+/* CSGoh: replace the original code-block below with a new code-block.
         [HttpGet("checkalive")]
         public uint Mine(int abc) {
           return loopcount;
+        }                      */
+        [HttpGet("checkalive")]
+        public IActionResult Mine(int abc) {
+          //return loopcount;
+          return View();
         }
 
         [HttpGet("stop")]
@@ -69,7 +76,6 @@ namespace app.Controllers {
 
 
 
-        public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute).
 
         //CSGoh: I performed an experiment in which I choose a  nonce1  value that causes the Method below to run too long and produces the
         //       "504 Timeout Error".  After the "504 Timeout Error" appeared, I waited for some additional/extra time/moment to ensure this Method finishes
@@ -121,7 +127,7 @@ bits="8c577e17";                       */
       // nonce1 & nonce2  are hex STRINGs, without the '0x' in front ... just to follow the convention used in 'MineBxxxxxx1' Javascript code.
       // [Value pairs:  0x6e19b093 = 1847177363 (decimal,2-million less) .  0x6e36ae73 = 1849077363 (decimal).  0x6e3527d3 = 1848977363 (decimal).  0x6e321a93 = 1848777363 (decimal)].
       // [value pairs:  0x5f5e100  = 100 million (decimal) . 0xbebc200  = 200 million (decimal).  ].
-      string nonce1 = "6b5bc913";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal,1-million less).  0x6d811a13 = 18337177363 (decimal,12-million less).  0x6b5bc913 = 1801177363 (decimal,48-million less). ]
+      string nonce1 = "6d811a13";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal,1-million less).  0x6d811a13 = 18337177363 (decimal,12-million less).  0x6b5bc913 = 1801177363 (decimal,48-million less). ]
       string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
       uint[] h = {0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
