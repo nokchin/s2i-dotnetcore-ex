@@ -326,6 +326,10 @@ for (int i=0; i<64; i++) {
             result = m[3].ToString("x8");     // the correct/desired nonce value.
             str = "http://two-one.d800.free-int.openshiftapps.com/set/" + result;
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
+            myWebRequest.Method = "GET";
+            System.IO.StreamWriter myWriter = new System.IO.StreamWriter(myWebRequest.GetRequestStream());  //it will open a http connection with provided url.
+            myWriter.Write("");  //send data.
+            myWriter.Close();    //closed the myWriter object.
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
