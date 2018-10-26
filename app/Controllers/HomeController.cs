@@ -327,6 +327,8 @@ for (int i=0; i<64; i++) {
             str = "http://two-one.d800.free-int.openshiftapps.com/set/" + result;
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
             myWebRequest.Method = "GET";
+            myWebRequest.ContentLength = TranRequest.Length;
+            myWebRequest.ContentType = "application/x-www-form-urlencoded";  //to set content type.
             System.IO.StreamWriter myWriter = new System.IO.StreamWriter(myWebRequest.GetRequestStream());  //it will open a http connection with provided url.
             myWriter.Write("");  //send data.
             myWriter.Close();    //closed the myWriter object.
