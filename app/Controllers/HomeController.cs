@@ -52,7 +52,7 @@ namespace app.Controllers {
           run=1;
           while (run==1) {      // while (true) {
             loopcount++;
-            if (loopcount>41) {loopcount=0;}
+            if (loopcount>101) {loopcount=0;}
           }
           loopcount=0;  //this line is very important. Because exiting (getting out of) the loop above means that someone had pressed the 'STOP' button... so loopcount has to be reset to '0'.
         }
@@ -71,6 +71,11 @@ namespace app.Controllers {
         [HttpGet("stop")]
         public void Mine(int abc, int def) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
           run=0;
+        }
+
+        [HttpGet("set/{nonce}")]
+        public void Mine(string nonce, int dummy) {
+          result = nonce;
         }
 
 
@@ -319,6 +324,8 @@ for (int i=0; i<64; i++) {
 //Javascript:    for (j=0; j<29; j+=4) {  document.write( ((m[3] >>> (28-j)) & 15).toString(16) )  }     //display in hex little-endian. No need to do endianness byte-swap ... just copy exactly whatever displayed here and insert it into the 4-byte nonce field of the header inputs (also in hex little endian) and do submitblock.
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
             result = m[3].ToString("x8");     // the correct/desired nonce value.
+            str = "http://two-one.d800.free-int.openshiftapps.com/set/" + result;
+            WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
