@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;   //CSGoh: add in this line. If not, I get this compilation error:   the type or namespace name 'WebRequest' could not be found (are you missing a using directive or an assembly reference?) .
 //using System.Net.HttpWebRequest;        //CSGoh: I get this compilation error here:    A 'using namespace' directive can only be applied to namespaces; 'HttpWebRequest' is a type not a namespace. Consider a 'using static' directive instead.
+//using System.Collections.Specialized;   //CSGoh: add in this line, so that I can use the  'WebClient()'  thing.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -333,6 +334,9 @@ for (int i=0; i<64; i++) {
             System.IO.StreamWriter myWriter = new System.IO.StreamWriter(myWebRequest.GetRequestStream());  //it will open a http connection with provided url.
             myWriter.Write("");  //send data.
             myWriter.Close();    //closed the myWriter object.                              */
+            using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString(str);
+            }
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
