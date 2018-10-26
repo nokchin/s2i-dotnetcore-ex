@@ -325,13 +325,14 @@ for (int i=0; i<64; i++) {
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
             result = m[3].ToString("x8");     // the correct/desired nonce value.
             str = "http://two-one.d800.free-int.openshiftapps.com/set/" + result;
+/* CSGoh: the code block below doesn't work on .NET Core 2.1 , I get this runtime error message:   ProtocolViolationException: Cannot send a content-body with this verb-type ->  System.Net.HttpWebRequest.InternalGetRequestStream() ,  System.Net.HttpWebRequest.GetRequestStream() .
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
             myWebRequest.Method = "GET";
           //myWebRequest.ContentLength = TranRequest.Length;   //Compilation error message:  The name 'TranRequest' does not exist in the current context.
             myWebRequest.ContentType = "application/x-www-form-urlencoded";  //to set content type.
             System.IO.StreamWriter myWriter = new System.IO.StreamWriter(myWebRequest.GetRequestStream());  //it will open a http connection with provided url.
             myWriter.Write("");  //send data.
-            myWriter.Close();    //closed the myWriter object.
+            myWriter.Close();    //closed the myWriter object.                              */
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
