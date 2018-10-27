@@ -325,7 +325,7 @@ for (int i=0; i<64; i++) {
 //Javascript:    for (j=0; j<29; j+=4) {  document.write( ((m[3] >>> (28-j)) & 15).toString(16) )  }     //display in hex little-endian. No need to do endianness byte-swap ... just copy exactly whatever displayed here and insert it into the 4-byte nonce field of the header inputs (also in hex little endian) and do submitblock.
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
             result = m[3].ToString("x8");     // the correct/desired nonce value.
-            str = "http://two-one.d800.free-int.openshiftapps.com/set/" + result;
+            str = "http://one-mainnhubb.d800.free-int.openshiftapps.com/set/" + result;
 /* CSGoh: the code block below doesn't work on .NET Core 2.1 , I get this runtime error message:   ProtocolViolationException: Cannot send a content-body with this verb-type ->  System.Net.HttpWebRequest.InternalGetRequestStream() ,  System.Net.HttpWebRequest.GetRequestStream() .
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
             myWebRequest.Method = "GET";
@@ -337,6 +337,9 @@ for (int i=0; i<64; i++) {
             using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString(str);
             }
+          //myclient.Close();   //redundant. The advantage of the "using" statement above (generally the preferred way of handling an open STREAM or CONNECTION) is that it ensures the stream/connection is closed and disposed of automatically/properly upon exiting the "using" statement.
+          //If the "using" statement is NOT used, then we have to close the stream/connection manually, like:   myclient.Close();
+
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
 //Javascript & PHP:       exit(0);     // exit entire PHP script normally.
