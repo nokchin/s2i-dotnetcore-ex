@@ -333,8 +333,8 @@ for (int i=0; i<64; i++) {
             myWebRequest.ContentType = "application/x-www-form-urlencoded";  //to set content type.
             System.IO.StreamWriter myWriter = new System.IO.StreamWriter(myWebRequest.GetRequestStream());  //it will open a http connection with provided url.
             myWriter.Write("");  //send data.
-            myWriter.Close();    //closed the myWriter object.                              */
-            using (var myclient = new WebClient()) {
+            myWriter.Close();    //closed the myWriter object.        */
+            using (var myclient = new WebClient()) {     // since WebClient implements IDisposable, so we can use 'using' statement here.
               var responseString = myclient.DownloadString(str);
             }
           //myclient.Close();   //redundant. The advantage of the "using" statement above (generally the preferred way of handling an open STREAM or CONNECTION) is that it ensures the stream/connection is closed and disposed of automatically/properly upon exiting the "using" statement.
