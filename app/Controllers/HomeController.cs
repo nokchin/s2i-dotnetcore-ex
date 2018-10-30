@@ -43,10 +43,6 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below ........
-/*      https://docs.microsoft.com/en-us/dotnet/api/system.timers.timer?view=netframework-4.7.2
-        https://docs.microsoft.com/en-us/dotnet/api/system.threading.timer?redirectedfrom=MSDN&view=netframework-4.7.2
-        https://adrientorris.github.io/aspnet-core/how-to-implement-timer-netcoreapp1-0-netcoreapp1-1.html                   */
-
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute).
 
         public static uint loopcount = 0;
