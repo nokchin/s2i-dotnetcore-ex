@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
+using System.Timers;
 
 namespace app.Controllers {
     public class HomeController : Controller {     //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
@@ -43,6 +44,7 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below ........
+        private static System.Timers.Timer aTimer;
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute).
 
         public static uint loopcount = 0;
