@@ -44,7 +44,7 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below ........
-        private static System.Timers.Timer aTimer;
+      //private static System.Timers.Timer aTimer;
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute).
 
         public static uint loopcount = 0;
