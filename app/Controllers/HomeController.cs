@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
-using System.Timers;
+using System.Timers;                      //CSGoh: add in this line, so that can use 'timer'.
 
 namespace app.Controllers {
     public class HomeController : Controller {     //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
@@ -774,6 +774,10 @@ for (int i=0; i<64; i++) {
 
         private static void OnTimedEvent(Object source, ElapsedEventArgs e) {
           //Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
+/* CSGoh: In order to prove that the timer really triggers in every fixed interval, I use the code-block below to carry out a real-life experiment by
+          setting the 'result' variable at  "http://one-mainnhubb.d800.free-int.openshiftapps.com"  to the correct nonce value, and "0"  ALTERNATELY.
+          I use  "http://one-mainnhubb.d800.free-int.openshiftapps.com/checkalive"  to check/verify that the 'result' variable at  "http://one-mainnhubb.d800.free-int.openshiftapps.com"
+          really get changed/toggled between the correct nonce value and "0"  ALTERNATELY. This shows that the timer really triggers in every fix interval.
           loopcount++;
           if (loopcount>=2) {
             loopcount=0;
@@ -785,6 +789,10 @@ for (int i=0; i<64; i++) {
             using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString("http://one-mainnhubb.d800.free-int.openshiftapps.com/set/"+"0");
             }
+          }
+*/
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://one-mainnhubb.d800.free-int.openshiftapps.com/set/"+result);
           }
         }
 
