@@ -336,11 +336,17 @@ for (int i=0; i<64; i++) {
             System.IO.StreamWriter myWriter = new System.IO.StreamWriter(myWebRequest.GetRequestStream());  //it will open a http connection with provided url.
             myWriter.Write("");  //send data.
             myWriter.Close();    //closed the myWriter object.        */
+
             using (var myclient = new WebClient()) {     // since WebClient implements IDisposable, so we can use 'using' statement here.
               var responseString = myclient.DownloadString(str);
             }
           //myclient.Close();   //redundant. The advantage of the "using" statement above (generally the preferred way of handling an open STREAM or CONNECTION) is that it ensures the stream/connection is closed and disposed of automatically/properly upon exiting the "using" statement.
           //If the "using" statement is NOT used, then we have to close the stream/connection manually, like:   myclient.Close();
+            SetTimer();
+            run=1;
+            while (run==1) {}      // while (true) {}
+            aTimer.Stop();
+            aTimer.Dispose();
 
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
@@ -758,6 +764,29 @@ for (int i=0; i<64; i++) {
       return result;        // ------ NO NEED  'RETURN'  HERE, BECAUSE THIS METHOD IS DEFINED AS  "VOID"  TYPE.  NO COMPILATION ERROR. ------ //
         }
 
+
+        private static void SetTimer() {
+          aTimer = new System.Timers.Timer(7000);   // Create a timer with a seven second interval.
+          aTimer.Elapsed += OnTimedEvent;           // Hook up the Elapsed event for the timer.
+          aTimer.AutoReset = true;
+          aTimer.Enabled = true;
+        }
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e) {
+          //Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
+          loopcount++;
+          if (loopcount>=2) {
+            loopcount=0;
+            using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://one-mainnhubb.d800.free-int.openshiftapps.com/set/"+result);
+            }
+          }
+          else {    // (loopcount==1) .
+            using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://one-mainnhubb.d800.free-int.openshiftapps.com/set/"+"0");
+            }
+          }
+        }
 
 
 
