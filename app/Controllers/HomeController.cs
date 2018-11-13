@@ -89,20 +89,26 @@ namespace app.Controllers {
         //       "504 Timeout Error".  After the "504 Timeout Error" appeared, I waited for some additional/extra time/moment to ensure this Method finishes
         //       running, and then checked the value of 'result' string variable, and found that 'result' really contains the desired nonce value!  So
         //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
-        [HttpGet("btc")]
-        public string Mine(string abc) {    // string 'abc'  is a dummy/unused parameter variables -> to differentiate this Method from the rest of other Mine() Methods so that there is no compilation error.
+        [HttpGet("btc/{str}")]
+        public string Mine(string str) {
 
       //CSGoh: the line below can be used to replace the above TWO lines so that we can invoke/call this Method in the 'Mine.cshtml' file using Razor code like this:   @{HomeController.btc();}  . It is just like calling the  @{HomeController.Cats();}  Method in 'All.cshtml' .
 //      public static string btc() {    //CSGoh: If I don't use 'static' here, I get this compilation error:   An object reference is required for the non-static field, method, or property.
 
       result = "";      // reset 'result' to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
 
-      uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
-      string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
-      string bits_coef = "0x7e578c";
-      string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
-      string mintime = "d1b45d5a";
-      string bits = "8c577e17";
+      if (str.Length==154) {
+        run=1;
+
+      }
+      else {    // below is the real block #504452  info/data.
+        uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
+        string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
+        string bits_coef = "0x7e578c";
+        string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
+        string mintime = "d1b45d5a";
+        string bits = "8c577e17";
+      }
 
       uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
 
@@ -319,7 +325,7 @@ for (int i=0; i<64; i++) {
           if (substr($str,-2,2)!='00') {break;}  //[VERY IMPORTANT]: MUST have ending semicolon at   "break;"  . If not, RedHat OpenShift PHP interpreter will give error.
           if (hexdec(substr($str,-4,2).substr($str,-6,2).substr($str,-8,2)) < hexdec($bits_coef)) {     //success!
 */
-          string str = (reg_e+0x9b05688c).ToString("x8");    // 'str' is now a hex string with 8-characters (with leading zeroes padded if necessary).
+          str = (reg_e+0x9b05688c).ToString("x8");    // 'str' is now a hex string with 8-characters (with leading zeroes padded if necessary).
           if (str.Substring(6,2)!="00") {break;}
           if (uint.Parse(str.Substring(4,2)+str.Substring(2,2)+str.Substring(0,2),System.Globalization.NumberStyles.HexNumber) < uint.Parse(bits_coef.Substring(2,6),System.Globalization.NumberStyles.HexNumber)) {    //success!
 
@@ -343,7 +349,7 @@ for (int i=0; i<64; i++) {
           //myclient.Close();   //redundant. The advantage of the "using" statement above (generally the preferred way of handling an open STREAM or CONNECTION) is that it ensures the stream/connection is closed and disposed of automatically/properly upon exiting the "using" statement.
           //If the "using" statement is NOT used, then we have to close the stream/connection manually, like:   myclient.Close();
             SetTimer();
-            run=1;
+            //run=1;   //Need to comment out this line here, after I change the attribute from  [HttpGet("btc")]  to  [HttpGet("btc/{str}")] .  "run" now is set to '1' on top, if the 'str' argument length is 154-character.
             while (run==1) {}      // while (true) {}
             aTimer.Stop();
             aTimer.Dispose();
@@ -755,18 +761,18 @@ for (int i=0; i<64; i++) {
 //} while (m[3]|0)    //the loop will exit using this line.    I have tried before using  "while (m[3])"  and the loop does NOT exit (maybe due to the carry-over bit?).
 //} while (m[3]!=0x3)     //for experiment purpose (better use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only).
 //} while (m[3]!=1949177363)   // =0x742e1613.  For experiment purpose (better use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only).
-  } while (  m[3] != uint.Parse(nonce2,System.Globalization.NumberStyles.HexNumber)   );   //better use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only.
+  } while (  (m[3] != uint.Parse(nonce2,System.Globalization.NumberStyles.HexNumber)) && (run==1)   );   //better use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only.
                                //[VERY IMPORTANT]: MUST have ending semicolon at the   "do {} while (...);"   statement. If not, RedHat OpenShift PHP interpreter will give error.
 
 
 //    blocktemplate = new Audio("buzzer_x.wav"); // buffers automatically when created
 //    blocktemplate.play();
-      return result;        // ------ NO NEED  'RETURN'  HERE, BECAUSE THIS METHOD IS DEFINED AS  "VOID"  TYPE.  NO COMPILATION ERROR. ------ //
+      return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
         }
 
 
         private static void SetTimer() {
-          aTimer = new System.Timers.Timer(7000);   // Create a timer with a seven second interval.
+          aTimer = new System.Timers.Timer(7000);   // Create a timer with a seven second (7000ms) interval.
           aTimer.Elapsed += OnTimedEvent;           // Hook up the Elapsed event for the timer.
           aTimer.AutoReset = true;
           aTimer.Enabled = true;
