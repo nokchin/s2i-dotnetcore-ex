@@ -99,6 +99,8 @@ namespace app.Controllers {
 
       if (str.Length==154) {
         run=1;
+        uint[] midstate = {0,0,0,0,0,0,0,0};
+        midstate[0]=uint.Parse(str.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
 
       }
       else {    // below is the real block #504452  info/data.
