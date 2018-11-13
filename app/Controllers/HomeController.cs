@@ -100,8 +100,20 @@ namespace app.Controllers {
       if (str.Length==154) {
         run=1;
         uint[] midstate = {0,0,0,0,0,0,0,0};
+        // [Note]:  for real block #504452, the 'str' should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
         midstate[0]=uint.Parse(str.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
-
+        midstate[1]=uint.Parse(str.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[2]=uint.Parse(str.Substring(16,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[3]=uint.Parse(str.Substring(24,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[4]=uint.Parse(str.Substring(32,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[5]=uint.Parse(str.Substring(40,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[6]=uint.Parse(str.Substring(48,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[7]=uint.Parse(str.Substring(56,8), System.Globalization.NumberStyles.HexNumber);
+        string bits_expo = str.Substring(64,2);
+        string bits_coef = str.Substring(66,8);
+        string merkleroot= str.Substring(74,64);
+        string mintime =  str.Substring(138,8);
+        string bits =     str.Substring(146,8);
       }
       else {    // below is the real block #504452  info/data.
         //run=1;    //CSGoh: I don't want to set "run" to '1' here !!
