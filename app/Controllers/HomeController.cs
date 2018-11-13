@@ -97,9 +97,15 @@ namespace app.Controllers {
 
       result = "";      // reset 'result' to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
 
+      //Below is the real block #504452  info/data.
+        uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
+        string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
+        string bits_coef = "0x7e578c";
+        string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
+        string mintime = "d1b45d5a";
+        string bits = "8c577e17";
       if (str.Length==154) {
         run=1;
-        uint[] midstate = {0,0,0,0,0,0,0,0};
         // [Note]:  for real block #504452, the 'str' should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
         midstate[0]=uint.Parse(str.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
         midstate[1]=uint.Parse(str.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
@@ -109,20 +115,11 @@ namespace app.Controllers {
         midstate[5]=uint.Parse(str.Substring(40,8), System.Globalization.NumberStyles.HexNumber);
         midstate[6]=uint.Parse(str.Substring(48,8), System.Globalization.NumberStyles.HexNumber);
         midstate[7]=uint.Parse(str.Substring(56,8), System.Globalization.NumberStyles.HexNumber);
-        string bits_expo = str.Substring(64,2);
-        string bits_coef = str.Substring(66,8);
-        string merkleroot= str.Substring(74,64);
-        string mintime =  str.Substring(138,8);
-        string bits =     str.Substring(146,8);
-      }
-      else {    // below is the real block #504452  info/data.
-        //run=1;    //CSGoh: I don't want to set "run" to '1' here !!
-        uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
-        string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
-        string bits_coef = "0x7e578c";
-        string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
-        string mintime = "d1b45d5a";
-        string bits = "8c577e17";
+        bits_expo = str.Substring(64,2);
+        bits_coef = str.Substring(66,8);
+        merkleroot= str.Substring(74,64);
+        mintime =  str.Substring(138,8);
+        bits =     str.Substring(146,8);
       }
 
       uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
