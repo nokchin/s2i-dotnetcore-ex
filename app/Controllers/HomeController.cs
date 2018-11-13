@@ -102,6 +102,7 @@ namespace app.Controllers {
 
       }
       else {    // below is the real block #504452  info/data.
+        //run=1;    //CSGoh: I don't want to set "run" to '1' here !!
         uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
         string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
         string bits_coef = "0x7e578c";
