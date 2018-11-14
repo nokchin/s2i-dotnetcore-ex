@@ -30,28 +30,6 @@ namespace app
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
-
-/* The code-block below can be used to set/control the timeout of the browser session. I copy it from   https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-2.1 .
-   Note:  Session isn't supported in SignalR apps because a SignalR Hub may execute independent of an HTTP context. For example, this can occur when a
-          long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
-
-        services.AddDistributedMemoryCache();
-
-        services.AddSession(options => {
-            // Set a short timeout for easy testing.
-            options.IdleTimeout = TimeSpan.FromSeconds(10);   //CSGoh: I think there are also things like  .FromMinutes()  &  .FromHours()  .
-            options.Cookie.HttpOnly = true;
-        });
-*/
-/* CSGoh: I've tried the below, but it does not help in solving the  "504 Gateway Timeout"  error issue ...
-        services.AddSession(options => {
-            options.IdleTimeout = TimeSpan.FromHours(23);
-        });           */
-
-
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
