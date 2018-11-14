@@ -1,26 +1,14 @@
 ﻿@page
 @using app.Controllers
 @{
-ViewData["Title"] = "Home Page";
+//ViewData["Title"] = "Home Page";
 
   if (HomeController.normalview!=1) {
-<br>
-loopcount: @HomeController.loopcount
-<br>
-NONCE result: @HomeController.result
-<br>
-HttpGet string:
-<br>
-BtcVoid:
+<p>loopcount: @HomeController.loopcount</p>
+<p>NONCE result: @HomeController.result</p>
 <br><br>
   }
-
-}
-
-
-
-
-
+  else {
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -111,3 +99,6 @@ BtcVoid:
         </ul>
     </div>
 </div>
+  }
+
+}
