@@ -44,12 +44,14 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below ........
+        public static uint normalview = 1;
         private static System.Timers.Timer aTimer;
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute).
 
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
 
+/* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
         [HttpGet("firstloop")]
         public void Mine() {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
           run=1;
@@ -58,6 +60,9 @@ namespace app.Controllers {
             if (loopcount>101) {loopcount=0;}
           }
           loopcount=0;  //this line is very important. Because exiting (getting out of) the loop above means that someone had pressed the 'STOP' button... so loopcount has to be reset to '0'.
+        }          */
+        public IActionResult Mine() {
+          normalview=1;    return View();
         }
 
 /* CSGoh: replace the original code-block below with a new code-block.
@@ -68,7 +73,7 @@ namespace app.Controllers {
         [HttpGet("checkalive")]
         public IActionResult Mine(int abc) {
           //return loopcount;
-          return View();
+          normalview=0;    return View();
         }
 
         [HttpGet("stop")]
