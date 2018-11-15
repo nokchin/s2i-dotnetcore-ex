@@ -827,7 +827,7 @@ for (int i=0; i<64; i++) {
 
 
         [HttpGet("hub_btc/{str}")]
-        public void Mine(string str, string dummy) {
+        public void Mine(int dummy, string str) {
           result="";     result1="";
           using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString("http://two-mainnhubb.d800.free-int.openshiftapps.com/btc/"+str);
