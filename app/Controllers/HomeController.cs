@@ -46,7 +46,8 @@ namespace app.Controllers {
         // CSGoh: added all my own stuff below ........
         public static uint normalview = 1;
         private static System.Timers.Timer aTimer;
-        public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute).
+        public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute). This variable also serves as FIRST PLACE-HOLDER for main-hub's application program.
+        public static string result1= "";    //SECOND PLACE-HOLDER for the main-hub's application program.
 
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
@@ -83,7 +84,12 @@ namespace app.Controllers {
 
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce, int dummy) {
-          result = nonce;
+          if (result.Length>7) {
+            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce}
+          }
+          else {
+            if (nonce.Length>7) {result=nonce}
+          }
         }
 
 
