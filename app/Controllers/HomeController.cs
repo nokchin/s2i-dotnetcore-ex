@@ -72,13 +72,13 @@ namespace app.Controllers {
           return loopcount;
         }                      */
         [HttpGet("checkalive")]
-        public IActionResult Mine(int abc) {
+        public IActionResult Mine(int dummy) {
           //return loopcount;
           normalview=0;    return View();
         }
 
         [HttpGet("stop")]
-        public void Mine(int abc, int def) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
+        public void Mine(int dummy, int dummy1) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
           run=0;
         }
 
@@ -825,6 +825,17 @@ for (int i=0; i<64; i++) {
           }
         }
 
+
+        [HttpGet("hub_btc/{str}")]
+        public void Mine(string str, string dummy) {
+          result="";     result1="";
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://two-mainnhubb.d800.free-int.openshiftapps.com/btc/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/btc/"+str);
+          }
+        }
 
 
 
