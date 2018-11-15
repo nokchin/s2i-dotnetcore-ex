@@ -85,10 +85,10 @@ namespace app.Controllers {
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce, int dummy) {
           if (result.Length>7) {
-            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce}
+            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;}
           }
           else {
-            if (nonce.Length>7) {result=nonce}
+            if (nonce.Length>7) {result=nonce;}
           }
         }
 
