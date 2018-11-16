@@ -82,18 +82,13 @@ namespace app.Controllers {
           run=0;
         }
 
-        [HttpGet("cancel")]
-        public void Mine(int dummy, int dummy1, int dummy2) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
-          result1="00000000";     run=0;
-        }
-
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce, int dummy) {
           if (result.Length>7) {
-            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;}
+            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;}  }
           }
           else {
-            if (nonce.Length>7) {result=nonce;}
+            if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;}  }
           }
         }
 
@@ -847,7 +842,7 @@ for (int i=0; i<64; i++) {
 
         [HttpGet("hub_cancel")]
         public void Mine(string dummy, string dummy1, string dummy2) {
-          cpu_list("cancel");
+          cpu_list("set/00000000");
         }
 
         private static void cpu_list(string str) {
