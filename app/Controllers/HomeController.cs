@@ -847,7 +847,7 @@ for (int i=0; i<64; i++) {
 
         private static void cpu_list(string str) {
           using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://pric-apple3.7e14.starter-us-west-2.openshiftapps.com/"+str);
+              var responseString = myclient.DownloadString("http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/"+str);
           }
           using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString("http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/"+str);
