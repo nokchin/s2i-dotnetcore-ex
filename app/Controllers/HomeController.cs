@@ -132,7 +132,24 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         merkleroot= result.Substring(74,64);
         mintime =  result.Substring(138,8);
         bits =     result.Substring(146,8);
-        result="";
+        result="";   result1="";   //this line is very important.
+      }
+      else if (result1.Length==154) {
+        run=1;
+        midstate[0]=uint.Parse(result1.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[1]=uint.Parse(result1.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[2]=uint.Parse(result1.Substring(16,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[3]=uint.Parse(result1.Substring(24,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[4]=uint.Parse(result1.Substring(32,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[5]=uint.Parse(result1.Substring(40,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[6]=uint.Parse(result1.Substring(48,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[7]=uint.Parse(result1.Substring(56,8), System.Globalization.NumberStyles.HexNumber);
+        bits_expo = result1.Substring(64,2);
+        bits_coef = result1.Substring(66,8);
+        merkleroot= result1.Substring(74,64);
+        mintime =  result1.Substring(138,8);
+        bits =     result1.Substring(146,8);
+        result="";   result1="";   //this line is very important.
       }
 
       uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
