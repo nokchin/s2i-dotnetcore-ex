@@ -100,14 +100,15 @@ namespace app.Controllers {
         //       "504 Timeout Error".  After the "504 Timeout Error" appeared, I waited for some additional/extra time/moment to ensure this Method finishes
         //       running, and then checked the value of 'result' string variable, and found that 'result' really contains the desired nonce value!  So
         //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
-        [HttpGet("btc/{str}")]
-        public string Mine(string str) {
+        [HttpGet("btc")]
+        public void Mine(string dummy) {
 
       //CSGoh: the line below can be used to replace the above TWO lines so that we can invoke/call this Method in the 'Mine.cshtml' file using Razor code like this:   @{HomeController.btc();}  . It is just like calling the  @{HomeController.Cats();}  Method in 'All.cshtml' .
 //      public static string btc() {    //CSGoh: If I don't use 'static' here, I get this compilation error:   An object reference is required for the non-static field, method, or property.
 
       result = "";      // reset 'result' to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
-
+      result1= "";
+while ((result!="00000000") && (result1!="00000000")) {     // if either 'result' or 'result1' is "00000000" , then it means the  CANCEL  condition.
       //Below is the real block #504452  info/data.
         uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
         string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
@@ -115,22 +116,23 @@ namespace app.Controllers {
         string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
         string mintime = "d1b45d5a";
         string bits = "8c577e17";
-      if (str.Length==154) {
+      if (result.Length==154) {
         run=1;
-        // [Note]:  for real block #504452, the 'str' should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
-        midstate[0]=uint.Parse(str.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
-        midstate[1]=uint.Parse(str.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
-        midstate[2]=uint.Parse(str.Substring(16,8), System.Globalization.NumberStyles.HexNumber);
-        midstate[3]=uint.Parse(str.Substring(24,8), System.Globalization.NumberStyles.HexNumber);
-        midstate[4]=uint.Parse(str.Substring(32,8), System.Globalization.NumberStyles.HexNumber);
-        midstate[5]=uint.Parse(str.Substring(40,8), System.Globalization.NumberStyles.HexNumber);
-        midstate[6]=uint.Parse(str.Substring(48,8), System.Globalization.NumberStyles.HexNumber);
-        midstate[7]=uint.Parse(str.Substring(56,8), System.Globalization.NumberStyles.HexNumber);
-        bits_expo = str.Substring(64,2);
-        bits_coef = str.Substring(66,8);
-        merkleroot= str.Substring(74,64);
-        mintime =  str.Substring(138,8);
-        bits =     str.Substring(146,8);
+        // [Note]:  for real block #504452, the 'result' should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
+        midstate[0]=uint.Parse(result.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[1]=uint.Parse(result.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[2]=uint.Parse(result.Substring(16,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[3]=uint.Parse(result.Substring(24,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[4]=uint.Parse(result.Substring(32,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[5]=uint.Parse(result.Substring(40,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[6]=uint.Parse(result.Substring(48,8), System.Globalization.NumberStyles.HexNumber);
+        midstate[7]=uint.Parse(result.Substring(56,8), System.Globalization.NumberStyles.HexNumber);
+        bits_expo = result.Substring(64,2);
+        bits_coef = result.Substring(66,8);
+        merkleroot= result.Substring(74,64);
+        mintime =  result.Substring(138,8);
+        bits =     result.Substring(146,8);
+        result="";
       }
 
       uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
@@ -348,7 +350,7 @@ for (int i=0; i<64; i++) {
           if (substr($str,-2,2)!='00') {break;}  //[VERY IMPORTANT]: MUST have ending semicolon at   "break;"  . If not, RedHat OpenShift PHP interpreter will give error.
           if (hexdec(substr($str,-4,2).substr($str,-6,2).substr($str,-8,2)) < hexdec($bits_coef)) {     //success!
 */
-          str = (reg_e+0x9b05688c).ToString("x8");    // 'str' is now a hex string with 8-characters (with leading zeroes padded if necessary).
+          string str = (reg_e+0x9b05688c).ToString("x8");    // 'str' is now a hex string with 8-characters (with leading zeroes padded if necessary).
           if (str.Substring(6,2)!="00") {break;}
           if (uint.Parse(str.Substring(4,2)+str.Substring(2,2)+str.Substring(0,2),System.Globalization.NumberStyles.HexNumber) < uint.Parse(bits_coef.Substring(2,6),System.Globalization.NumberStyles.HexNumber)) {    //success!
 
@@ -790,7 +792,8 @@ for (int i=0; i<64; i++) {
 
 //    blocktemplate = new Audio("buzzer_x.wav"); // buffers automatically when created
 //    blocktemplate.play();
-      return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
+    //return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
+}
         }
 
 
@@ -830,10 +833,10 @@ for (int i=0; i<64; i++) {
         public void Mine(int dummy, string str) {
           result="";     result1="";
           using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://two-mainnhubb.d800.free-int.openshiftapps.com/btc/"+str);
+              var responseString = myclient.DownloadString("http://two-mainnhubb.d800.free-int.openshiftapps.com/set/"+str);
           }
           using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/btc/"+str);
+              var responseString = myclient.DownloadString("http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/set/"+str);
           }
         }
 
