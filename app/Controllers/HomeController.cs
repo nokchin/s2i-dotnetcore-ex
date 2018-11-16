@@ -82,6 +82,11 @@ namespace app.Controllers {
           run=0;
         }
 
+        [HttpGet("cancel")]
+        public void Mine(int dummy, int dummy1, int dummy2) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
+          result1="00000000";     run=0;
+        }
+
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce, int dummy) {
           if (result.Length>7) {
@@ -832,15 +837,27 @@ for (int i=0; i<64; i++) {
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
           result="";     result1="";
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://two-mainnhubb.d800.free-int.openshiftapps.com/set/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/set/"+str);
-          }
+          cpu_list("set/"+str);
         }
 
+        [HttpGet("hub_stop")]
+        public void Mine(string dummy, string dummy1) {
+          cpu_list("stop");
+        }
 
+        [HttpGet("hub_cancel")]
+        public void Mine(string dummy, string dummy1, string dummy2) {
+          cpu_list("cancel");
+        }
+
+        private static void cpu_list(string str) {
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://pric-apple3.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+        }
 
 
 
