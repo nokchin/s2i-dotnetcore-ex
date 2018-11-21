@@ -51,7 +51,7 @@ namespace app.Controllers {
 
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
-        public static string id = "";
+        public static string id = "";    // the 'id' is in hex-string format.
         public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
@@ -110,7 +110,7 @@ namespace app.Controllers {
 
       result = "";      // reset 'result' to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
       result1= "";
-      id = dummy;
+      id = dummy;       // the 'id' is in hex-string format.
 while ((result!="00000000") && (result1!="00000000")) {     // if either 'result' or 'result1' is "00000000" , then it means the  CANCEL  condition.
       //Below is the real block #504452  info/data.
         uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
