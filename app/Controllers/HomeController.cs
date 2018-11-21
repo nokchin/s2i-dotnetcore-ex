@@ -51,6 +51,7 @@ namespace app.Controllers {
 
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
+        public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
         [HttpGet("firstloop")]
@@ -78,12 +79,12 @@ namespace app.Controllers {
         }
 
         [HttpGet("stop")]
-        public void Mine(int dummy, int dummy1) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
+        public void Mine(uint dummy) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
           run=0;
         }
 
         [HttpGet("set/{nonce}")]
-        public void Mine(string nonce, int dummy) {
+        public void Mine(string nonce) {
           if (result.Length>7) {
             if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;}  }
           }
@@ -101,7 +102,7 @@ namespace app.Controllers {
         //       running, and then checked the value of 'result' string variable, and found that 'result' really contains the desired nonce value!  So
         //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
         [HttpGet("btc")]
-        public void Mine(string dummy) {
+        public void Mine(byte dummy) {
 
       //CSGoh: the line below can be used to replace the above TWO lines so that we can invoke/call this Method in the 'Mine.cshtml' file using Razor code like this:   @{HomeController.btc();}  . It is just like calling the  @{HomeController.Cats();}  Method in 'All.cshtml' .
 //      public static string btc() {    //CSGoh: If I don't use 'static' here, I get this compilation error:   An object reference is required for the non-static field, method, or property.
@@ -375,7 +376,7 @@ for (int i=0; i<64; i++) {
 //Javascript:    for (j=0; j<29; j+=4) {  document.write( ((m[3] >>> (28-j)) & 15).toString(16) )  }     //display in hex little-endian. No need to do endianness byte-swap ... just copy exactly whatever displayed here and insert it into the 4-byte nonce field of the header inputs (also in hex little endian) and do submitblock.
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
             result = m[3].ToString("x8");     // the correct/desired nonce value.
-            str = "http://one-mainnhubb.d800.free-int.openshiftapps.com/set/" + result;
+            str = hub + "set/" + result;
 /* CSGoh: the code block below doesn't work on .NET Core 2.1 , I get this runtime error message:   ProtocolViolationException: Cannot send a content-body with this verb-type ->  System.Net.HttpWebRequest.InternalGetRequestStream() ,  System.Net.HttpWebRequest.GetRequestStream() .
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
             myWebRequest.Method = "GET";
@@ -824,24 +825,24 @@ for (int i=0; i<64; i++) {
         private static void OnTimedEvent(Object source, ElapsedEventArgs e) {
           //Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
 /* CSGoh: In order to prove that the timer really triggers in every fixed interval, I use the code-block below to carry out a real-life experiment by
-          setting the 'result' variable at  "http://one-mainnhubb.d800.free-int.openshiftapps.com"  to the correct nonce value, and "0"  ALTERNATELY.
-          I use  "http://one-mainnhubb.d800.free-int.openshiftapps.com/checkalive"  to check/verify that the 'result' variable at  "http://one-mainnhubb.d800.free-int.openshiftapps.com"
-          really get changed/toggled between the correct nonce value and "0"  ALTERNATELY. This shows that the timer really triggers in every fix interval.
+          setting the 'result' variable at the HUB to the correct nonce value, and "0"  ALTERNATELY.  I then use  "...HUB_URL.../checkalive"  to check/
+          verify that the 'result' variable at the HUB really get changed/toggled between the correct nonce value and "0"  ALTERNATELY. This shows that
+          the timer really triggers in every fix interval.
           loopcount++;
           if (loopcount>=2) {
             loopcount=0;
             using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://one-mainnhubb.d800.free-int.openshiftapps.com/set/"+result);
+              var responseString = myclient.DownloadString(hub + "set/"+result);
             }
           }
           else {    // (loopcount==1) .
             using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://one-mainnhubb.d800.free-int.openshiftapps.com/set/"+"0");
+              var responseString = myclient.DownloadString(hub + "set/"+"0");
             }
           }
 */
           using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://one-mainnhubb.d800.free-int.openshiftapps.com/set/"+result);
+              var responseString = myclient.DownloadString(hub + "set/"+result);
           }
         }
 
@@ -853,12 +854,12 @@ for (int i=0; i<64; i++) {
         }
 
         [HttpGet("hub_stop")]
-        public void Mine(string dummy, string dummy1) {
+        public void Mine(boolean dummy) {
           cpu_list("stop");
         }
 
         [HttpGet("hub_cancel")]
-        public void Mine(string dummy, string dummy1, string dummy2) {
+        public void Mine(char dummy) {
           cpu_list("set/00000000");
         }
 
@@ -870,6 +871,8 @@ for (int i=0; i<64; i++) {
               var responseString = myclient.DownloadString("http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/"+str);
           }
         }
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------//
 
 
 
