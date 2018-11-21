@@ -854,7 +854,7 @@ for (int i=0; i<64; i++) {
         }
 
         [HttpGet("hub_stop")]
-        public void Mine(boolean dummy) {
+        public void Mine(bool dummy) {
           cpu_list("stop");
         }
 
