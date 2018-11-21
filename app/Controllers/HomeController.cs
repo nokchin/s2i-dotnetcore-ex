@@ -51,6 +51,7 @@ namespace app.Controllers {
 
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
+        public static string id = "";
         public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
@@ -86,10 +87,10 @@ namespace app.Controllers {
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce) {
           if (result.Length>7) {
-            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;}  }
+            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;id="";}  }
           }
           else {
-            if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;}  }
+            if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;id="";}  }
           }
         }
 
@@ -812,6 +813,7 @@ for (int i=0; i<64; i++) {
 //    blocktemplate.play();
     //return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
 }
+      id="";
         }
 
 
