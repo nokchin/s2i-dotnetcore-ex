@@ -1173,10 +1173,96 @@ for (int i=0; i<64; i++) {
           using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString("http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/"+str);
           }
-          
-
-
-
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://boy-patt8.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          }
+          using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString("http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          }
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------------------//
