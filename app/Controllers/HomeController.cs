@@ -52,7 +52,11 @@ namespace app.Controllers {
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
         public static string id = "";    // the 'id' is in hex-string format.
+
         public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
+        public static uint runstatus0 = 0;
+        public static uint runstatus1 = 0;
+        public static uint runstatus2 = 0;
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
         [HttpGet("firstloop")]
@@ -136,6 +140,9 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         mintime =  result.Substring(138,8);
         bits =     result.Substring(146,8);
         result="";   result1="";   //this line is very important.
+        using (var myclient = new WebClient()) {
+          var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
+        }
       }
       else if (result1.Length==154) {
         run=1;
@@ -153,6 +160,9 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         mintime =  result1.Substring(138,8);
         bits =     result1.Substring(146,8);
         result="";   result1="";   //this line is very important.
+        using (var myclient = new WebClient()) {
+          var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
+        }
       }
 
       uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
@@ -852,7 +862,7 @@ for (int i=0; i<64; i++) {
 
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
-          result="";     result1="";
+          result="";   result1="";   //should not reset 'runstatusX' hub variables to "0" here, because the value of 'runstatusX' hub variables should be controlled/sent by various CPUs/nodes.
           cpu_list("set/"+str);
         }
 
@@ -864,6 +874,26 @@ for (int i=0; i<64; i++) {
         [HttpGet("hub_cancel")]
         public void Mine(char dummy) {
           cpu_list("set/00000000");
+        }
+
+        [HttpGet("runstatus/{str}")]
+        public void Mine(uint dummy, string str) {
+          string action = str.Substring(0,1);
+          str = str.Substring(1,(str.Length)-1);
+          switch(str) {
+            case "0":
+              if (action=="s") {runstatus0=runstatus0|0x80000000;} else
+              if (action=="r") {runstatus0=runstatus0&0x7fffffff;}
+              break;
+            case "1":
+              
+              break;
+            case "2":
+              
+              break;
+            default:
+              break;
+          }
         }
 
         private static void cpu_list(string str) {
