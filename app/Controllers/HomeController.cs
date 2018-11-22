@@ -886,11 +886,30 @@ for (int i=0; i<64; i++) {
               if (action=="r") {runstatus0=runstatus0&0x7fffffff;}
               break;
             case "1":
-              
+              if (action=="s") {runstatus0=runstatus0|0x40000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xbfffffff;}
               break;
             case "2":
-              
+              if (action=="s") {runstatus0=runstatus0|0x20000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xdfffffff;}
               break;
+            case "3":
+              if (action=="s") {runstatus0=runstatus0|0x10000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xefffffff;}
+              break;
+            case "4":
+              if (action=="s") {runstatus0=runstatus0|0x08000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xf7ffffff;}
+              break;
+            case "5":
+              if (action=="s") {runstatus0=runstatus0|0x04000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfbffffff;}
+              break;
+            case "6":
+              if (action=="s") {runstatus0=runstatus0|0x02000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfdffffff;}
+              break;
+
             default:
               break;
           }
