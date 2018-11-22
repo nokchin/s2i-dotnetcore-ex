@@ -4,9 +4,14 @@
 //ViewData["Title"] = "Home Page";
 
   if (HomeController.normalview!=1) {
+    string runstat0 = (HomeController.runstatus0).ToString("x8");    // runstat0 is now a hex string with 8-characters (with leading zeroes padded if necessary).
+    string runstat1 = (HomeController.runstatus1).ToString("x8");    // runstat1 is now a hex string with 8-characters (with leading zeroes padded if necessary).
+    string runstat2 = (HomeController.runstatus2).ToString("x8");    // runstat2 is now a hex string with 8-characters (with leading zeroes padded if necessary).
+
 <p>run: @HomeController.run ; id: @HomeController.id</p>
 <p>NONCE result : @HomeController.result</p>
 <p>NONCE result1: @HomeController.result1</p>
+<p>HUB runstatus0: @runstat0 ; runstatus1: @runstat1 ; runstatus2: @runstat2</p>
 <br><br>
   }
   else {
