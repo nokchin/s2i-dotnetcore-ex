@@ -86,6 +86,9 @@ namespace app.Controllers {
         [HttpGet("stop")]
         public void Mine(uint dummy) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
           run=0;
+          using (var myclient = new WebClient()) {
+            var responseString = myclient.DownloadString(hub + "runstatus/r"+ id);   //  "/r"  means Reset the 'runstatusX' bit to logic-0.
+          }
         }
 
         [HttpGet("set/{nonce}")]
