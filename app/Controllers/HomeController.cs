@@ -828,6 +828,8 @@ for (int i=0; i<64; i++) {
     //return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
 }
       run=0; id="";
+      if (result=="00000000") {result="";}       // this line is very important.
+      if (result1=="00000000") {result1="";}     // this line is very important.
         }
 
 
