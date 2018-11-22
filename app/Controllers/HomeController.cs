@@ -909,6 +909,238 @@ for (int i=0; i<64; i++) {
               if (action=="s") {runstatus0=runstatus0|0x02000000;} else
               if (action=="r") {runstatus0=runstatus0&0xfdffffff;}
               break;
+            case "7":
+              if (action=="s") {runstatus0=runstatus0|0x01000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfeffffff;}
+              break;
+            case "8":
+              if (action=="s") {runstatus0=runstatus0|0x00800000;} else
+              if (action=="r") {runstatus0=runstatus0&0xff7fffff;}
+              break;
+            case "9":
+              if (action=="s") {runstatus0=runstatus0|0x00400000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffbfffff;}
+              break;
+            case "a":
+              if (action=="s") {runstatus0=runstatus0|0x00200000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffdfffff;}
+              break;
+            case "b":
+              if (action=="s") {runstatus0=runstatus0|0x00100000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffefffff;}
+              break;
+            case "c":
+              if (action=="s") {runstatus0=runstatus0|0x00080000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfff7ffff;}
+              break;
+            case "d":
+              if (action=="s") {runstatus0=runstatus0|0x00040000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffbffff;}
+              break;
+            case "e":
+              if (action=="s") {runstatus0=runstatus0|0x00020000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffdffff;}
+              break;
+            case "f":
+              if (action=="s") {runstatus0=runstatus0|0x00010000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffeffff;}
+              break;
+            case "10":
+              if (action=="s") {runstatus0=runstatus0|0x00008000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffff7fff;}
+              break;
+            case "11":
+              if (action=="s") {runstatus0=runstatus0|0x00004000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffbfff;}
+              break;
+            case "12":
+              if (action=="s") {runstatus0=runstatus0|0x00002000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffdfff;}
+              break;
+            case "13":
+              if (action=="s") {runstatus0=runstatus0|0x00001000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffefff;}
+              break;
+            case "14":
+              if (action=="s") {runstatus0=runstatus0|0x00000800;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffff7ff;}
+              break;
+            case "15":
+              if (action=="s") {runstatus0=runstatus0|0x00000400;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffbff;}
+              break;
+            case "16":
+              if (action=="s") {runstatus0=runstatus0|0x00000200;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffdff;}
+              break;
+            case "17":
+              if (action=="s") {runstatus0=runstatus0|0x00000100;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffeff;}
+              break;
+            case "18":
+              if (action=="s") {runstatus0=runstatus0|0x00000080;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffff7f;}
+              break;
+            case "19":
+              if (action=="s") {runstatus0=runstatus0|0x00000040;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffffbf;}
+              break;
+            case "1a":
+              if (action=="s") {runstatus0=runstatus0|0x00000020;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffffdf;}
+              break;
+            case "1b":
+              if (action=="s") {runstatus0=runstatus0|0x00000010;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffffef;}
+              break;
+            case "1c":
+              if (action=="s") {runstatus0=runstatus0|0x00000008;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffff7;}
+              break;
+            case "1d":
+              if (action=="s") {runstatus0=runstatus0|0x00000004;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffffb;}
+              break;
+            case "1e":
+              if (action=="s") {runstatus0=runstatus0|0x00000002;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffffd;}
+              break;
+            case "1f":
+              if (action=="s") {runstatus0=runstatus0|0x00000001;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffffe;}
+              break;
+            case "20":
+              if (action=="s") {runstatus1=runstatus1|0x80000000;} else
+              if (action=="r") {runstatus1=runstatus1&0x7fffffff;}
+              break;
+
+
+            case "1":
+              if (action=="s") {runstatus0=runstatus0|0x40000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xbfffffff;}
+              break;
+            case "2":
+              if (action=="s") {runstatus0=runstatus0|0x20000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xdfffffff;}
+              break;
+            case "3":
+              if (action=="s") {runstatus0=runstatus0|0x10000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xefffffff;}
+              break;
+            case "4":
+              if (action=="s") {runstatus0=runstatus0|0x08000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xf7ffffff;}
+              break;
+            case "5":
+              if (action=="s") {runstatus0=runstatus0|0x04000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfbffffff;}
+              break;
+            case "6":
+              if (action=="s") {runstatus0=runstatus0|0x02000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfdffffff;}
+              break;
+            case "7":
+              if (action=="s") {runstatus0=runstatus0|0x01000000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfeffffff;}
+              break;
+            case "8":
+              if (action=="s") {runstatus0=runstatus0|0x00800000;} else
+              if (action=="r") {runstatus0=runstatus0&0xff7fffff;}
+              break;
+            case "9":
+              if (action=="s") {runstatus0=runstatus0|0x00400000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffbfffff;}
+              break;
+            case "a":
+              if (action=="s") {runstatus0=runstatus0|0x00200000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffdfffff;}
+              break;
+            case "b":
+              if (action=="s") {runstatus0=runstatus0|0x00100000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffefffff;}
+              break;
+            case "c":
+              if (action=="s") {runstatus0=runstatus0|0x00080000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfff7ffff;}
+              break;
+            case "d":
+              if (action=="s") {runstatus0=runstatus0|0x00040000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffbffff;}
+              break;
+            case "e":
+              if (action=="s") {runstatus0=runstatus0|0x00020000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffdffff;}
+              break;
+            case "f":
+              if (action=="s") {runstatus0=runstatus0|0x00010000;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffeffff;}
+              break;
+            case "10":
+              if (action=="s") {runstatus0=runstatus0|0x00008000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffff7fff;}
+              break;
+            case "11":
+              if (action=="s") {runstatus0=runstatus0|0x00004000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffbfff;}
+              break;
+            case "12":
+              if (action=="s") {runstatus0=runstatus0|0x00002000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffdfff;}
+              break;
+            case "13":
+              if (action=="s") {runstatus0=runstatus0|0x00001000;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffefff;}
+              break;
+            case "14":
+              if (action=="s") {runstatus0=runstatus0|0x00000800;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffff7ff;}
+              break;
+            case "15":
+              if (action=="s") {runstatus0=runstatus0|0x00000400;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffbff;}
+              break;
+            case "16":
+              if (action=="s") {runstatus0=runstatus0|0x00000200;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffdff;}
+              break;
+            case "17":
+              if (action=="s") {runstatus0=runstatus0|0x00000100;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffeff;}
+              break;
+            case "18":
+              if (action=="s") {runstatus0=runstatus0|0x00000080;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffff7f;}
+              break;
+            case "19":
+              if (action=="s") {runstatus0=runstatus0|0x00000040;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffffbf;}
+              break;
+            case "1a":
+              if (action=="s") {runstatus0=runstatus0|0x00000020;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffffdf;}
+              break;
+            case "1b":
+              if (action=="s") {runstatus0=runstatus0|0x00000010;} else
+              if (action=="r") {runstatus0=runstatus0&0xffffffef;}
+              break;
+            case "1c":
+              if (action=="s") {runstatus0=runstatus0|0x00000008;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffff7;}
+              break;
+            case "1d":
+              if (action=="s") {runstatus0=runstatus0|0x00000004;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffffb;}
+              break;
+            case "1e":
+              if (action=="s") {runstatus0=runstatus0|0x00000002;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffffd;}
+              break;
+            case "1f":
+              if (action=="s") {runstatus0=runstatus0|0x00000001;} else
+              if (action=="r") {runstatus0=runstatus0&0xfffffffe;}
+              break;
+
+
 
             default:
               break;
