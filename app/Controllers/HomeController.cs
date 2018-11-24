@@ -1165,6 +1165,14 @@ for (int i=0; i<64; i++) {
            "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
            "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
            "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
            "",
         };
 
@@ -1173,30 +1181,6 @@ for (int i=0; i<64; i++) {
               var responseString = myclient.DownloadString(""+str);
           }
 
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
           using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString("http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/"+str);
           }
