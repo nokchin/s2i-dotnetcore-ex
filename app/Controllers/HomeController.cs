@@ -1161,6 +1161,11 @@ for (int i=0; i<64; i++) {
            "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
            "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
            "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+           "",
         };
 
         private static void cpu_list(string str) {
@@ -1168,18 +1173,6 @@ for (int i=0; i<64; i++) {
               var responseString = myclient.DownloadString(""+str);
           }
 
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/"+str);
-          }
           using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString("http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/"+str);
           }
