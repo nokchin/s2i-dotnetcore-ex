@@ -44,6 +44,15 @@ namespace app.Controllers {
 
 
         // CSGoh: added all my own stuff below ........
+/*   URL:  https://stackoverflow.com/questions/2044591/what-is-the-difference-between-array-getlength-and-array-length .
+In C#, the  .GetLength() method takes an integer that specifies the dimension of the array that you're querying and returns its length.
+The .Length property returns the total number of items in an array:
+            int[,,] a = new int[10,11,12];
+            Console.WriteLine(a.Length);           // 1320
+            Console.WriteLine(a.GetLength(0));     // 10
+            Console.WriteLine(a.GetLength(1));     // 11
+            Console.WriteLine(a.GetLength(2));     // 12
+And on one-dimensional array,  .Length will return the same value as .GetLength(0) .            */
         public static uint normalview = 1;
         private static System.Timers.Timer aTimer;
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute). This variable also serves as FIRST PLACE-HOLDER for main-hub's application program.
@@ -1147,19 +1156,18 @@ for (int i=0; i<64; i++) {
           }
         }
 
+        public static string[] cpu = {
+           "http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+        };
+
         private static void cpu_list(string str) {
           using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/"+str);
+              var responseString = myclient.DownloadString(""+str);
           }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/"+str);
-          }
+
           using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString("http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/"+str);
           }
