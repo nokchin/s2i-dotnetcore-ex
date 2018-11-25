@@ -921,10 +921,12 @@ for (int i=0; i<64; i++) {
         }
 
 
+        //Usage:   ....Hub_url..../hub_btc/{the 154-digit serialized blocktemplate header, exclude the cpu/node-id and TOTAL cpu-count number}
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
           result="";   result1="";   //should not reset 'runstatusX' hub variables to "0" here, because the value of 'runstatusX' hub variables should be controlled/sent by various CPUs/nodes.
           //cpu_list("set/"+str);    //replace this original line with the code-block below.
+          cpucount = (uint) cpu.Length;
           for (uint i=0; i<cpu.Length; i++) {
             using (var myclient = new WebClient()) {
               var responseString = myclient.DownloadString( cpu[i]+"set/"+str+(i.ToString("x3"))+((cpu.Length).ToString("x3")) );   //3 hex-digits of cpu node-id, followed by 3 hex-digits of TOTAL cpu/node count number.
@@ -932,11 +934,13 @@ for (int i=0; i<64; i++) {
           }
         }
 
+        //Usage:   ....Hub_url..../hub_stop
         [HttpGet("hub_stop")]
         public void Mine(bool dummy) {
           cpu_list("stop");
         }
 
+        //Usage:   ....Hub_url..../hub_cancel
         [HttpGet("hub_cancel")]
         public void Mine(char dummy) {
           cpu_list("set/00000000");
