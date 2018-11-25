@@ -66,6 +66,49 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public static uint runstatus0 = 0;
         public static uint runstatus1 = 0;
         public static uint runstatus2 = 0;
+        public static string[] cpu = {
+           "http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://boy-patt8.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
+           "http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/"
+        };
+
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
         [HttpGet("firstloop")]
@@ -392,7 +435,7 @@ for (int i=0; i<64; i++) {
           if (substr($str,-2,2)!='00') {break;}  //[VERY IMPORTANT]: MUST have ending semicolon at   "break;"  . If not, RedHat OpenShift PHP interpreter will give error.
           if (hexdec(substr($str,-4,2).substr($str,-6,2).substr($str,-8,2)) < hexdec($bits_coef)) {     //success!
 */
-          string str = (reg_e+0x9b05688c).ToString("x8");    // 'str' is now a hex string with 8-characters (with leading zeroes padded if necessary).
+          string str = (reg_e+0x9b05688c).ToString("x8");    // 'str' is now a hex (lower-case) string with 8-characters (with leading zeroes padded if necessary). For upper-case HEX string, use "X8" .
           if (str.Substring(6,2)!="00") {break;}
           if (uint.Parse(str.Substring(4,2)+str.Substring(2,2)+str.Substring(0,2),System.Globalization.NumberStyles.HexNumber) < uint.Parse(bits_coef.Substring(2,6),System.Globalization.NumberStyles.HexNumber)) {    //success!
 
@@ -877,7 +920,12 @@ for (int i=0; i<64; i++) {
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
           result="";   result1="";   //should not reset 'runstatusX' hub variables to "0" here, because the value of 'runstatusX' hub variables should be controlled/sent by various CPUs/nodes.
-          cpu_list("set/"+str);
+          //cpu_list("set/"+str);    //replace this original line with the code-block below.
+          for (uint i=0; i<cpu.Length; i++) {
+            using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString( cpu[i]+"set/"+str+(i.ToString("x3"))+((cpu.Length).ToString("x3")) );   //3 hex-digits of cpu node-id, followed by 3 hex-digits of TOTAL cpu/node count number.
+            }
+          }
         }
 
         [HttpGet("hub_stop")]
@@ -1156,102 +1204,11 @@ for (int i=0; i<64; i++) {
           }
         }
 
-        public static string[] cpu = {
-           "http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-           "",
-        };
-
         private static void cpu_list(string str) {
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString(""+str);
-          }
-
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://boy-patt8.7e14.starter-us-west-2.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/"+str);
-          }
-          using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString("http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/"+str);
+          for (uint i=0; i<cpu.Length; i++) {
+            using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString(cpu[i]+str);
+            }
           }
         }
 
