@@ -60,7 +60,8 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
 
         public static uint loopcount = 0;
         public static uint run = 0;  // 0 - STOP  .   1 - running .
-        public static string id = "";    // the 'id' is in hex-string format.
+        public static string id = "";    // the 'id' is a 3-digit hex-string format.
+        public static uint cpucount = 0;
 
         public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
         public static uint runstatus0 = 0;
@@ -126,7 +127,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
 
 /* CSGoh: replace the original code-block below with a new code-block.
         [HttpGet("checkalive")]
-        public uint Mine(int abc) {
+        public uint Mine(int dummy) {
           return loopcount;
         }                      */
         [HttpGet("checkalive")]
@@ -161,15 +162,14 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         //       "504 Timeout Error".  After the "504 Timeout Error" appeared, I waited for some additional/extra time/moment to ensure this Method finishes
         //       running, and then checked the value of 'result' string variable, and found that 'result' really contains the desired nonce value!  So
         //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
-        [HttpGet("btc/{dummy}")]
-        public void Mine(string dummy, int dummy1) {
+        [HttpGet("btc")]
+        public void Mine(byte dummy) {
 
       //CSGoh: the line below can be used to replace the above TWO lines so that we can invoke/call this Method in the 'Mine.cshtml' file using Razor code like this:   @{HomeController.btc();}  . It is just like calling the  @{HomeController.Cats();}  Method in 'All.cshtml' .
 //      public static string btc() {    //CSGoh: If I don't use 'static' here, I get this compilation error:   An object reference is required for the non-static field, method, or property.
 
       result = "";      // reset 'result' to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
       result1= "";
-      id = dummy;       // the 'id' is in hex-string format.
 while ((result!="00000000") && (result1!="00000000")) {     // if either 'result' or 'result1' is "00000000" , then it means the  CANCEL  condition.
       //Below is the real block #504452  info/data.
         uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
@@ -178,9 +178,9 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
         string mintime = "d1b45d5a";
         string bits = "8c577e17";
-      if (result.Length==154) {
+      if (result.Length==160) {
         run=1;
-        // [Note]:  for real block #504452, the 'result' should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
+        // [Note]:  for real block #504452, the 'result' (exclude the cpu/node-id and TOTAL cpu count number) should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
         midstate[0]=uint.Parse(result.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
         midstate[1]=uint.Parse(result.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
         midstate[2]=uint.Parse(result.Substring(16,8), System.Globalization.NumberStyles.HexNumber);
@@ -194,12 +194,14 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         merkleroot= result.Substring(74,64);
         mintime =  result.Substring(138,8);
         bits =     result.Substring(146,8);
+        id = result.Substring(154,3);       // the 'id' is a 3-digit hex-string format.
+        cpucount = uint.Parse(result.Substring(157,3), System.Globalization.NumberStyles.HexNumber);
         result="";   result1="";   //this line is very important.
         using (var myclient = new WebClient()) {
           var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
         }
       }
-      else if (result1.Length==154) {
+      else if (result1.Length==160) {
         run=1;
         midstate[0]=uint.Parse(result1.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
         midstate[1]=uint.Parse(result1.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
@@ -214,6 +216,8 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         merkleroot= result1.Substring(74,64);
         mintime =  result1.Substring(138,8);
         bits =     result1.Substring(146,8);
+        id = result1.Substring(154,3);       // the 'id' is a 3-digit hex-string format.
+        cpucount = uint.Parse(result1.Substring(157,3), System.Globalization.NumberStyles.HexNumber);
         result="";   result1="";   //this line is very important.
         using (var myclient = new WebClient()) {
           var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
@@ -943,259 +947,259 @@ for (int i=0; i<64; i++) {
           string action = str.Substring(0,1);
           str = str.Substring(1,(str.Length)-1);
           switch(str) {
-            case "0":
+            case "000":
               if (action=="s") {runstatus0=runstatus0|0x80000000;} else
               if (action=="r") {runstatus0=runstatus0&0x7fffffff;}
               break;
-            case "1":
+            case "001":
               if (action=="s") {runstatus0=runstatus0|0x40000000;} else
               if (action=="r") {runstatus0=runstatus0&0xbfffffff;}
               break;
-            case "2":
+            case "002":
               if (action=="s") {runstatus0=runstatus0|0x20000000;} else
               if (action=="r") {runstatus0=runstatus0&0xdfffffff;}
               break;
-            case "3":
+            case "003":
               if (action=="s") {runstatus0=runstatus0|0x10000000;} else
               if (action=="r") {runstatus0=runstatus0&0xefffffff;}
               break;
-            case "4":
+            case "004":
               if (action=="s") {runstatus0=runstatus0|0x08000000;} else
               if (action=="r") {runstatus0=runstatus0&0xf7ffffff;}
               break;
-            case "5":
+            case "005":
               if (action=="s") {runstatus0=runstatus0|0x04000000;} else
               if (action=="r") {runstatus0=runstatus0&0xfbffffff;}
               break;
-            case "6":
+            case "006":
               if (action=="s") {runstatus0=runstatus0|0x02000000;} else
               if (action=="r") {runstatus0=runstatus0&0xfdffffff;}
               break;
-            case "7":
+            case "007":
               if (action=="s") {runstatus0=runstatus0|0x01000000;} else
               if (action=="r") {runstatus0=runstatus0&0xfeffffff;}
               break;
-            case "8":
+            case "008":
               if (action=="s") {runstatus0=runstatus0|0x00800000;} else
               if (action=="r") {runstatus0=runstatus0&0xff7fffff;}
               break;
-            case "9":
+            case "009":
               if (action=="s") {runstatus0=runstatus0|0x00400000;} else
               if (action=="r") {runstatus0=runstatus0&0xffbfffff;}
               break;
-            case "a":
+            case "00a":
               if (action=="s") {runstatus0=runstatus0|0x00200000;} else
               if (action=="r") {runstatus0=runstatus0&0xffdfffff;}
               break;
-            case "b":
+            case "00b":
               if (action=="s") {runstatus0=runstatus0|0x00100000;} else
               if (action=="r") {runstatus0=runstatus0&0xffefffff;}
               break;
-            case "c":
+            case "00c":
               if (action=="s") {runstatus0=runstatus0|0x00080000;} else
               if (action=="r") {runstatus0=runstatus0&0xfff7ffff;}
               break;
-            case "d":
+            case "00d":
               if (action=="s") {runstatus0=runstatus0|0x00040000;} else
               if (action=="r") {runstatus0=runstatus0&0xfffbffff;}
               break;
-            case "e":
+            case "00e":
               if (action=="s") {runstatus0=runstatus0|0x00020000;} else
               if (action=="r") {runstatus0=runstatus0&0xfffdffff;}
               break;
-            case "f":
+            case "00f":
               if (action=="s") {runstatus0=runstatus0|0x00010000;} else
               if (action=="r") {runstatus0=runstatus0&0xfffeffff;}
               break;
-            case "10":
+            case "010":
               if (action=="s") {runstatus0=runstatus0|0x00008000;} else
               if (action=="r") {runstatus0=runstatus0&0xffff7fff;}
               break;
-            case "11":
+            case "011":
               if (action=="s") {runstatus0=runstatus0|0x00004000;} else
               if (action=="r") {runstatus0=runstatus0&0xffffbfff;}
               break;
-            case "12":
+            case "012":
               if (action=="s") {runstatus0=runstatus0|0x00002000;} else
               if (action=="r") {runstatus0=runstatus0&0xffffdfff;}
               break;
-            case "13":
+            case "013":
               if (action=="s") {runstatus0=runstatus0|0x00001000;} else
               if (action=="r") {runstatus0=runstatus0&0xffffefff;}
               break;
-            case "14":
+            case "014":
               if (action=="s") {runstatus0=runstatus0|0x00000800;} else
               if (action=="r") {runstatus0=runstatus0&0xfffff7ff;}
               break;
-            case "15":
+            case "015":
               if (action=="s") {runstatus0=runstatus0|0x00000400;} else
               if (action=="r") {runstatus0=runstatus0&0xfffffbff;}
               break;
-            case "16":
+            case "016":
               if (action=="s") {runstatus0=runstatus0|0x00000200;} else
               if (action=="r") {runstatus0=runstatus0&0xfffffdff;}
               break;
-            case "17":
+            case "017":
               if (action=="s") {runstatus0=runstatus0|0x00000100;} else
               if (action=="r") {runstatus0=runstatus0&0xfffffeff;}
               break;
-            case "18":
+            case "018":
               if (action=="s") {runstatus0=runstatus0|0x00000080;} else
               if (action=="r") {runstatus0=runstatus0&0xffffff7f;}
               break;
-            case "19":
+            case "019":
               if (action=="s") {runstatus0=runstatus0|0x00000040;} else
               if (action=="r") {runstatus0=runstatus0&0xffffffbf;}
               break;
-            case "1a":
+            case "01a":
               if (action=="s") {runstatus0=runstatus0|0x00000020;} else
               if (action=="r") {runstatus0=runstatus0&0xffffffdf;}
               break;
-            case "1b":
+            case "01b":
               if (action=="s") {runstatus0=runstatus0|0x00000010;} else
               if (action=="r") {runstatus0=runstatus0&0xffffffef;}
               break;
-            case "1c":
+            case "01c":
               if (action=="s") {runstatus0=runstatus0|0x00000008;} else
               if (action=="r") {runstatus0=runstatus0&0xfffffff7;}
               break;
-            case "1d":
+            case "01d":
               if (action=="s") {runstatus0=runstatus0|0x00000004;} else
               if (action=="r") {runstatus0=runstatus0&0xfffffffb;}
               break;
-            case "1e":
+            case "01e":
               if (action=="s") {runstatus0=runstatus0|0x00000002;} else
               if (action=="r") {runstatus0=runstatus0&0xfffffffd;}
               break;
-            case "1f":
+            case "01f":
               if (action=="s") {runstatus0=runstatus0|0x00000001;} else
               if (action=="r") {runstatus0=runstatus0&0xfffffffe;}
               break;
-            case "20":
+            case "020":
               if (action=="s") {runstatus1=runstatus1|0x80000000;} else
               if (action=="r") {runstatus1=runstatus1&0x7fffffff;}
               break;
-            case "21":
+            case "021":
               if (action=="s") {runstatus1=runstatus1|0x40000000;} else
               if (action=="r") {runstatus1=runstatus1&0xbfffffff;}
               break;
-            case "22":
+            case "022":
               if (action=="s") {runstatus1=runstatus1|0x20000000;} else
               if (action=="r") {runstatus1=runstatus1&0xdfffffff;}
               break;
-            case "23":
+            case "023":
               if (action=="s") {runstatus1=runstatus1|0x10000000;} else
               if (action=="r") {runstatus1=runstatus1&0xefffffff;}
               break;
-            case "24":
+            case "024":
               if (action=="s") {runstatus1=runstatus1|0x08000000;} else
               if (action=="r") {runstatus1=runstatus1&0xf7ffffff;}
               break;
-            case "25":
+            case "025":
               if (action=="s") {runstatus1=runstatus1|0x04000000;} else
               if (action=="r") {runstatus1=runstatus1&0xfbffffff;}
               break;
-            case "26":
+            case "026":
               if (action=="s") {runstatus1=runstatus1|0x02000000;} else
               if (action=="r") {runstatus1=runstatus1&0xfdffffff;}
               break;
-            case "27":
+            case "027":
               if (action=="s") {runstatus1=runstatus1|0x01000000;} else
               if (action=="r") {runstatus1=runstatus1&0xfeffffff;}
               break;
-            case "28":
+            case "028":
               if (action=="s") {runstatus1=runstatus1|0x00800000;} else
               if (action=="r") {runstatus1=runstatus1&0xff7fffff;}
               break;
-            case "29":
+            case "029":
               if (action=="s") {runstatus1=runstatus1|0x00400000;} else
               if (action=="r") {runstatus1=runstatus1&0xffbfffff;}
               break;
-            case "2a":
+            case "02a":
               if (action=="s") {runstatus1=runstatus1|0x00200000;} else
               if (action=="r") {runstatus1=runstatus1&0xffdfffff;}
               break;
-            case "2b":
+            case "02b":
               if (action=="s") {runstatus1=runstatus1|0x00100000;} else
               if (action=="r") {runstatus1=runstatus1&0xffefffff;}
               break;
-            case "2c":
+            case "02c":
               if (action=="s") {runstatus1=runstatus1|0x00080000;} else
               if (action=="r") {runstatus1=runstatus1&0xfff7ffff;}
               break;
-            case "2d":
+            case "02d":
               if (action=="s") {runstatus1=runstatus1|0x00040000;} else
               if (action=="r") {runstatus1=runstatus1&0xfffbffff;}
               break;
-            case "2e":
+            case "02e":
               if (action=="s") {runstatus1=runstatus1|0x00020000;} else
               if (action=="r") {runstatus1=runstatus1&0xfffdffff;}
               break;
-            case "2f":
+            case "02f":
               if (action=="s") {runstatus1=runstatus1|0x00010000;} else
               if (action=="r") {runstatus1=runstatus1&0xfffeffff;}
               break;
-            case "30":
+            case "030":
               if (action=="s") {runstatus1=runstatus1|0x00008000;} else
               if (action=="r") {runstatus1=runstatus1&0xffff7fff;}
               break;
-            case "31":
+            case "031":
               if (action=="s") {runstatus1=runstatus1|0x00004000;} else
               if (action=="r") {runstatus1=runstatus1&0xffffbfff;}
               break;
-            case "32":
+            case "032":
               if (action=="s") {runstatus1=runstatus1|0x00002000;} else
               if (action=="r") {runstatus1=runstatus1&0xffffdfff;}
               break;
-            case "33":
+            case "033":
               if (action=="s") {runstatus1=runstatus1|0x00001000;} else
               if (action=="r") {runstatus1=runstatus1&0xffffefff;}
               break;
-            case "34":
+            case "034":
               if (action=="s") {runstatus1=runstatus1|0x00000800;} else
               if (action=="r") {runstatus1=runstatus1&0xfffff7ff;}
               break;
-            case "35":
+            case "035":
               if (action=="s") {runstatus1=runstatus1|0x00000400;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffbff;}
               break;
-            case "36":
+            case "036":
               if (action=="s") {runstatus1=runstatus1|0x00000200;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffdff;}
               break;
-            case "37":
+            case "037":
               if (action=="s") {runstatus1=runstatus1|0x00000100;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffeff;}
               break;
-            case "38":
+            case "038":
               if (action=="s") {runstatus1=runstatus1|0x00000080;} else
               if (action=="r") {runstatus1=runstatus1&0xffffff7f;}
               break;
-            case "39":
+            case "039":
               if (action=="s") {runstatus1=runstatus1|0x00000040;} else
               if (action=="r") {runstatus1=runstatus1&0xffffffbf;}
               break;
-            case "3a":
+            case "03a":
               if (action=="s") {runstatus1=runstatus1|0x00000020;} else
               if (action=="r") {runstatus1=runstatus1&0xffffffdf;}
               break;
-            case "3b":
+            case "03b":
               if (action=="s") {runstatus1=runstatus1|0x00000010;} else
               if (action=="r") {runstatus1=runstatus1&0xffffffef;}
               break;
-            case "3c":
+            case "03c":
               if (action=="s") {runstatus1=runstatus1|0x00000008;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffff7;}
               break;
-            case "3d":
+            case "03d":
               if (action=="s") {runstatus1=runstatus1|0x00000004;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffffb;}
               break;
-            case "3e":
+            case "03e":
               if (action=="s") {runstatus1=runstatus1|0x00000002;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffffd;}
               break;
-            case "3f":
+            case "03f":
               if (action=="s") {runstatus1=runstatus1|0x00000001;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffffe;}
               break;
