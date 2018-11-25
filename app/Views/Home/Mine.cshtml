@@ -4,11 +4,11 @@
 //ViewData["Title"] = "Home Page";
 
   if (HomeController.normalview!=1) {
-    string runstat0 = (HomeController.runstatus0).ToString("x8");    // runstat0 is now a hex string with 8-characters (with leading zeroes padded if necessary).
-    string runstat1 = (HomeController.runstatus1).ToString("x8");    // runstat1 is now a hex string with 8-characters (with leading zeroes padded if necessary).
-    string runstat2 = (HomeController.runstatus2).ToString("x8");    // runstat2 is now a hex string with 8-characters (with leading zeroes padded if necessary).
+    string runstat0 = (HomeController.runstatus0).ToString("x8");    // runstat0 is now a hex (lower-case) string with 8-characters (with leading zeroes padded if necessary). For upper-case HEX, use "X8".
+    string runstat1 = (HomeController.runstatus1).ToString("x8");    // runstat1 is now a hex (lower-case) string with 8-characters (with leading zeroes padded if necessary). For upper-case HEX, use "X8".
+    string runstat2 = (HomeController.runstatus2).ToString("x8");    // runstat2 is now a hex (lower-case) string with 8-characters (with leading zeroes padded if necessary). For upper-case HEX, use "X8".
 
-<p>run: @HomeController.run ; id: @HomeController.id</p>
+<p>run: @HomeController.run ; id: @HomeController.id (hex) ; cpucount: @HomeController.cpucount (decimal)</p>
 <p>NONCE result : @HomeController.result</p>
 <p>NONCE result1: @HomeController.result1</p>
 <p>HUB runstatus0: @runstat0 ; runstatus1: @runstat1 ; runstatus2: @runstat2</p>
