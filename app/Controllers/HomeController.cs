@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
-using System.Timers;                     //CSGoh: add in this line, so that can use 'timer'.
+using System.Timers;                      //CSGoh: add in this line, so that can use 'timer'.
 
 namespace app.Controllers {
     public class HomeController : Controller {     //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
@@ -67,6 +67,13 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public static uint runstatus0 = 0;
         public static uint runstatus1 = 0;
         public static uint runstatus2 = 0;
+        public static string[] cpu = {
+//         "http://two-mainnhubb.d800.free-int.openshiftapps.com/",
+           "http://two-mainnhubb.d800.free-int.openshiftapps.com/",
+           "http://cuba-cubatest.d800.free-int.openshiftapps.com/",
+           "http://test-cubatest.d800.free-int.openshiftapps.com/"
+
+        };
 
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
@@ -1163,7 +1170,7 @@ for (int i=0; i<64; i++) {
 
 
         //-------------------------------------------------------------------------------------------------------------------------------------------//
-/*
+
         //Usage:   ....Hub_url..../hub_btc/{154-digit hex-string serialized blocktemplate header ... exclude the cpu/node-id and TOTAL cpu-count number}
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
@@ -1196,7 +1203,7 @@ for (int i=0; i<64; i++) {
             }
           }
         }
-*/
+
         //-------------------------------------------------------------------------------------------------------------------------------------------//
 
 
