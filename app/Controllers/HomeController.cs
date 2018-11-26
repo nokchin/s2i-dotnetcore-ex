@@ -124,7 +124,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
             if (loopcount>101) {loopcount=0;}
           }
           loopcount=0;  //this line is very important. Because exiting (getting out of) the loop above means that someone had pressed the 'STOP' button... so loopcount has to be reset to '0'.
-        }          */
+        }           */
         public IActionResult Mine() {
           normalview=1;    return View();
         }
