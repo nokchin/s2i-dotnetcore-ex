@@ -148,10 +148,10 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public void Mine(string nonce) {
           if (!((nonce.Length==160) && (run==1))) {
             if (result.Length>7) {
-              if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;id="";}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.
+              if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.  Also do NOT make  (id="";)  here, because id is needed to communicate between cpu-node and the HUB.
             }
             else {
-              if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;id="";}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.
+              if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.  Also do NOT make  (id="";)  here, because id is needed to communicate between cpu-node and the HUB.
             }
           }
         }
@@ -890,9 +890,13 @@ for (int i=0; i<64; i++) {
 //    blocktemplate.play();
     //return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
 }
-      run=0; id="";
+      run=0;
+      //id="";      //comment this out, because id is needed to communicate between the cpu-node and HUB.
       if (result=="00000000") {result="";}       // this line is very important.
       if (result1=="00000000") {result1="";}     // this line is very important.
+      using (var myclient = new WebClient()) {
+         var responseString = myclient.DownloadString(hub + "runstatus/r"+ id);   //  "/r"  means Reset the 'runstatusX' bit to logic-0.
+      }
         }
 
 
