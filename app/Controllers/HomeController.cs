@@ -146,11 +146,13 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
 
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce) {
-          if (result.Length>7) {
-            if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;id="";}  }
-          }
-          else {
-            if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;id="";}  }
+          if (!((nonce.Length==160) && (run==1))) {
+            if (result.Length>7) {
+              if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;id="";}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.
+            }
+            else {
+              if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;id="";}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.
+            }
           }
         }
 
@@ -178,7 +180,7 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
         string mintime = "d1b45d5a";
         string bits = "8c577e17";
-      if (result.Length==160) {
+      if ((result.Length==160) && (run==0)) {
         run=1;
         // [Note]:  for real block #504452, the 'result' (exclude the cpu/node-id and TOTAL cpu count number) should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
         midstate[0]=uint.Parse(result.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
@@ -201,7 +203,7 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
           var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
         }
       }
-      else if (result1.Length==160) {
+      else if ((result1.Length==160) && (run==0)) {
         run=1;
         midstate[0]=uint.Parse(result1.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
         midstate[1]=uint.Parse(result1.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
@@ -222,6 +224,11 @@ while ((result!="00000000") && (result1!="00000000")) {     // if either 'result
         using (var myclient = new WebClient()) {
           var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
         }
+      }
+      else if (run==1) {   //reaching here means something has gone wrong !
+        run=0;   id="";
+        if ((result=="00000000") || (result.Length==160)) {result="";}
+        if ((result1=="00000000") || (result1.Length==160)) {result1="";}
       }
 
       uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
@@ -463,7 +470,7 @@ for (int i=0; i<64; i++) {
           //myclient.Close();   //redundant. The advantage of the "using" statement above (generally the preferred way of handling an open STREAM or CONNECTION) is that it ensures the stream/connection is closed and disposed of automatically/properly upon exiting the "using" statement.
           //If the "using" statement is NOT used, then we have to close the stream/connection manually, like:   myclient.Close();
             SetTimer();
-            //run=1;   //Need to comment out this line here, after I change the attribute from  [HttpGet("btc")]  to  [HttpGet("btc/{str}")] .  "run" now is set to '1' on top, if the 'str' argument length is 154-character.
+            //run=1;   //Need to comment out this line here, because  "run" now is set to '1' on top.
             while (run==1) {}      // while (true) {}
             aTimer.Stop();
             aTimer.Dispose();
