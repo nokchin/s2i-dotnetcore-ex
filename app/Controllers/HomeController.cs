@@ -130,7 +130,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public uint Mine(int dummy) {
           return loopcount;
         }                      */
-        //Usage:   ...Each_CPU_url.../checkalive
+        //Usage:   ...Each_CPU_url.../checkalive    OR    ...HUB_url.../checkalive
         [HttpGet("checkalive")]
         public IActionResult Mine(int dummy) {
           //return loopcount;
@@ -168,6 +168,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         //       "504 Timeout Error".  After the "504 Timeout Error" appeared, I waited for some additional/extra time/moment to ensure this Method finishes
         //       running, and then checked the value of 'result' string variable, and found that 'result' really contains the desired nonce value!  So
         //       this shows that the Method below will continue running until it finishes, regardless of whether "504 Timeout Error" comes out or not.
+        //Usage:   ...Each_CPU_url.../btc   <this will go into infinite loop, so user has to manually press the browser's STOP button> .
         [HttpGet("btc")]
         public void Mine(byte dummy) {
 
