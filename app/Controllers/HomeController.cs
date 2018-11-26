@@ -130,12 +130,14 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public uint Mine(int dummy) {
           return loopcount;
         }                      */
+        //Usage:   ...Each_CPU_url.../checkalive
         [HttpGet("checkalive")]
         public IActionResult Mine(int dummy) {
           //return loopcount;
           normalview=0;    return View();
         }
 
+        //Usage:   ...Each_CPU_url.../stop
         [HttpGet("stop")]
         public void Mine(uint dummy) {    // no 'RETURN' statement is required for a Method that is defined as 'void' type.
           run=0;
@@ -144,6 +146,8 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
           }
         }
 
+        //Usage1:   ...Each_CPU_url.../set/{hex 160-digit string  :->  the 154-digit serialized blocktemplate header, plus the hex 3-digit cpu/node-id, plus the hex 3-digit TOTAL cpu-count number}
+        //Usage2:   ...Each_CPU_url.../set/00000000     -> this is the CANCEL command.
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce) {
           if (!((nonce.Length==160) && (run==1))) {
@@ -932,7 +936,7 @@ for (int i=0; i<64; i++) {
         }
 
 
-        //Usage:   ....Hub_url..../hub_btc/{the 154-digit serialized blocktemplate header, exclude the cpu/node-id and TOTAL cpu-count number}
+        //Usage:   ....Hub_url..../hub_btc/{154-digit hex-string serialized blocktemplate header ... exclude the cpu/node-id and TOTAL cpu-count number}
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
           result="";   result1="";   //should not reset 'runstatusX' hub variables to "0" here, because the value of 'runstatusX' hub variables should be controlled/sent by various CPUs/nodes.
