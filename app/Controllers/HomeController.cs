@@ -67,48 +67,6 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public static uint runstatus0 = 0;
         public static uint runstatus1 = 0;
         public static uint runstatus2 = 0;
-        public static string[] cpu = {
-           "http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-           "http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://boy-patt8.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-           "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/"
-        };
 
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
@@ -1205,7 +1163,7 @@ for (int i=0; i<64; i++) {
 
 
         //-------------------------------------------------------------------------------------------------------------------------------------------//
-
+/*
         //Usage:   ....Hub_url..../hub_btc/{154-digit hex-string serialized blocktemplate header ... exclude the cpu/node-id and TOTAL cpu-count number}
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
@@ -1238,7 +1196,7 @@ for (int i=0; i<64; i++) {
             }
           }
         }
-
+*/
         //-------------------------------------------------------------------------------------------------------------------------------------------//
 
 
