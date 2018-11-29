@@ -111,7 +111,9 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
            "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
            "http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
-           "http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/"
+           "http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
+           "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
+           "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
         };
 
 
