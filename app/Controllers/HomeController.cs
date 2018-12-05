@@ -276,6 +276,19 @@ bits="8c577e17";                       */
       string nonce1 = "6d811a13";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal,1-million less).  0x6d811a13 = 18337177363 (decimal,12-million less).  0x6b5bc913 = 1801177363 (decimal,48-million less). ]
       string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
+    //[Note]: my program generates hashes from 'nonce1' till 'nonce2'-1 , and please pay extra attention to the situation where the last nonce of '0xffffffff' wraps around to '0'.
+    //Example1:  1000/13 = 76 with remainder=12 .  So: [1st_range: 0~77] , [2nd_range: 77~154] , [3rd_range: 154~231] , ... , [13th_range: 924~0]->assuming '999' wraps around to '0'.
+    //Example2:  13/3 = 4 with remainder=1 .  So: [1st_range: 0~5] , [2nd_range: 5~9] , [3rd_range: 9~0]->assuming '12' wraps around to '0'.
+    //Example3:  12/3 = 4 with remainder=0 .  So: [1st_range: 0~4] , [2nd_range: 4~8] , [3rd_range: 8~0]->assuming '11' wraps around to '0'.
+    //However, later I decided NOT to follow the 'fair' scheme of 'Example1' & 'Example2' above, because it is too complicated to implement in codes.
+      if (run==1) {
+        blocktemplate=0xffffffff;     blocktemplate=blocktemplate/cpucount;
+        nonce1 = ((uint.Parse(id,System.Globalization.NumberStyles.HexNumber))*blocktemplate).ToString("x8");
+
+      }
+
+
+
       uint[] h = {0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
                   0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
                   0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
