@@ -282,7 +282,8 @@ bits="8c577e17";                       */
     //Example3:  12/3 = 4 with remainder=0 .  So: [1st_range: 0~4] , [2nd_range: 4~8] , [3rd_range: 8~0]->assuming '11' wraps around to '0'.
     //However, later I decided NOT to follow the 'fair' scheme of 'Example1' & 'Example2' above, because it is too complicated to implement in codes.
       if (run==1) {
-        blocktemplate=0xffffffff;     blocktemplate=blocktemplate/cpucount;
+        blocktemplate=0xffffffff;   //by right the full-range here should be '0xffffffff+1' (=4,294,967,296 in decimal). However, an 'uint' variable can only take the maximum integer value of '0xffffffff' .
+        blocktemplate=blocktemplate/cpucount;
         nonce1 = ((uint.Parse(id,System.Globalization.NumberStyles.HexNumber))*blocktemplate).ToString("x8");
         if (uint.Parse(id,System.Globalization.NumberStyles.HexNumber)==(cpucount-1)) {nonce2="0";}
         else {nonce2 = (((uint.Parse(id,System.Globalization.NumberStyles.HexNumber))+1)*blocktemplate).ToString("x8");}
