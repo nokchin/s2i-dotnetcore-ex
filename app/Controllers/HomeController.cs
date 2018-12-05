@@ -284,9 +284,9 @@ bits="8c577e17";                       */
       if (run==1) {
         blocktemplate=0xffffffff;     blocktemplate=blocktemplate/cpucount;
         nonce1 = ((uint.Parse(id,System.Globalization.NumberStyles.HexNumber))*blocktemplate).ToString("x8");
-
+        if (uint.Parse(id,System.Globalization.NumberStyles.HexNumber)==(cpucount-1)) {nonce2="0";}
+        else {nonce2 = (((uint.Parse(id,System.Globalization.NumberStyles.HexNumber))+1)*blocktemplate).ToString("x8");}
       }
-
 
 
       uint[] h = {0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
