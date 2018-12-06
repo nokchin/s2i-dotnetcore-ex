@@ -389,7 +389,7 @@ for (int i=0; i<3; i++) {
       midvalue7=midvalue6;               // reg_h  <-  reg_g
       midvalue6=midvalue5;               // reg_g  <-  reg_f
       midvalue5=midvalue4;               // reg_f  <-  reg_e
-      midvalue4=midvalue3+blocktemplate;       // reg_e  <-  reg_d + T1
+      midvalue4=midvalue3+blocktemplate; // reg_e  <-  reg_d + T1
       blocktemplate= blocktemplate+((midvalue0<<30| (midvalue0>>2) )^(midvalue0<<19| (midvalue0>>13) )^(midvalue0<<10| (midvalue0>>22) ))+(midvalue0&midvalue1^midvalue0&midvalue2^midvalue1&midvalue2);       // (T1+T2) = T1 + Sigmabig0(a) + Maj(a,b,c)
       midvalue3=midvalue2;               // reg_d  <-  reg_c
       midvalue2=midvalue1;               // reg_c  <-  reg_b
@@ -398,6 +398,7 @@ for (int i=0; i<3; i++) {
 //    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 }
 
+while (run==1) {
 do {
       uint reg_a=midvalue0;   uint reg_b=midvalue1;   uint reg_c=midvalue2;   uint reg_d=midvalue3;
       uint reg_e=midvalue4;   uint reg_f=midvalue5;   uint reg_g=midvalue6;   uint reg_h=midvalue7;
@@ -910,11 +911,17 @@ for (int i=0; i<64; i++) {
   } while (  (m[3] != uint.Parse(nonce2,System.Globalization.NumberStyles.HexNumber)) && (run==1)   );   //better use hex number here, because Javascript maximum POSITIVE decimal integer/number is until 2,147,483,647 only.
                                //[VERY IMPORTANT]: MUST have ending semicolon at the   "do {} while (...);"   statement. If not, RedHat OpenShift PHP interpreter will give error.
 
-
 //    blocktemplate = new Audio("buzzer_x.wav"); // buffers automatically when created
 //    blocktemplate.play();
     //return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
-}
+
+      if (run==1) {
+
+      }
+}         //this is the closing bracket for the  "while(run==1){...}"  loop.
+
+
+}         //this is the closing bracket for the  CANCEL  condition.
       run=0;
       //id="";      //comment this out, because id is needed to communicate between the cpu-node and HUB.
       if (result=="00000000") {result="";}       // this line is very important.
