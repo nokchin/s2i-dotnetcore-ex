@@ -481,7 +481,7 @@ for (int i=0; i<64; i++) {
 //Javascript:    for (j=0; j<29; j+=4) {  document.write( ((m[3] >>> (28-j)) & 15).toString(16) )  }     //display in hex little-endian. No need to do endianness byte-swap ... just copy exactly whatever displayed here and insert it into the 4-byte nonce field of the header inputs (also in hex little endian) and do submitblock.
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
             result = m[3].ToString("x8");     // the correct/desired nonce value.
-            result = result + "_" + extra_seconds.ToString("x4") + "(hex)";
+            result = result + "_" + extra_seconds.ToString("x4") + "HEX";
             str = hub + "set/" + result;
 /* CSGoh: the code block below doesn't work on .NET Core 2.1 , I get this runtime error message:   ProtocolViolationException: Cannot send a content-body with this verb-type ->  System.Net.HttpWebRequest.InternalGetRequestStream() ,  System.Net.HttpWebRequest.GetRequestStream() .
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
