@@ -184,6 +184,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
       result = "";      // reset 'result' to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
       result1= "";
 while ((result!="00000000") && (result1!="00000000")) {     // if either 'result' or 'result1' is "00000000" , then it means the  CANCEL  condition.
+uint extra_seconds = 0;
       //Below is the real block #504452  info/data.
         uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
         string bits_expo = "17";   //I have run real cshtml experiment, and found that (unlike in Javascript) string in cshtml must be inside double-quote... cshtml string in single quote will NOT work (based on real experiment).
@@ -480,6 +481,7 @@ for (int i=0; i<64; i++) {
 //Javascript:    for (j=0; j<29; j+=4) {  document.write( ((m[3] >>> (28-j)) & 15).toString(16) )  }     //display in hex little-endian. No need to do endianness byte-swap ... just copy exactly whatever displayed here and insert it into the 4-byte nonce field of the header inputs (also in hex little endian) and do submitblock.
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
             result = m[3].ToString("x8");     // the correct/desired nonce value.
+            result = result + "_" + extra_seconds.ToString("x4") + "(hex)";
             str = hub + "set/" + result;
 /* CSGoh: the code block below doesn't work on .NET Core 2.1 , I get this runtime error message:   ProtocolViolationException: Cannot send a content-body with this verb-type ->  System.Net.HttpWebRequest.InternalGetRequestStream() ,  System.Net.HttpWebRequest.GetRequestStream() .
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
@@ -915,13 +917,55 @@ for (int i=0; i<64; i++) {
 //    blocktemplate.play();
     //return result;      // ------ no need  "return"  here, IF this method is defined as  "VOID"  type, and there won't be any compilation error. ------ //
 
+
       if (run==1) {
- 
-      }
-}         //this is the closing bracket for the  "while(run==1){...}"  loop.
+      extra_seconds++;
+      for (int i=0; i<64; i++) {m[i]=0;}
+      m[0] = uint.Parse(merkleroot.Substring(56,8), System.Globalization.NumberStyles.HexNumber);   // cannot use  int.Parse()  here, because m[] is a 'uint' array.
+      string str = (uint.Parse((mintime.Substring(6,2)+mintime.Substring(4,2)+mintime.Substring(2,2)+mintime.Substring(0,2)),System.Globalization.NumberStyles.HexNumber)+extra_seconds).ToString("x8");   // 'str' here is in big-endian hex-string format.
+      m[1] = uint.Parse((str.Substring(6,2)+str.Substring(4,2)+str.Substring(2,2)+str.Substring(0,2)), System.Globalization.NumberStyles.HexNumber);    //convert 'str' to little-endian here.
+      m[2] = uint.Parse(bits, System.Globalization.NumberStyles.HexNumber);
+      m[3] = uint.Parse(nonce1, System.Globalization.NumberStyles.HexNumber);  // m[3] is nonce (use hex number here, just to follow the convention used in 'MineBxxxxxx1' Javascript code).
+      m[4] = 0x80000000;
+    //m[5]=0;   m[6]=0;   m[7]=0;   m[8]=0;   m[9]=0;     -> redundant, because these array elements have been assigned with '0' value above.
+    //m[10]=0;  m[11]=0;  m[12]=0;  m[13]=0;  m[14]=0;    -> redundant, because these array elements have been assigned with '0' value above.
+      m[15] = 0x00000280;
+      // Now calculate  m[16] to m[63] .     [NOTE]: need to re-calculate m[18] to m[63] everytime the nonce m[3] changes -> m[16] and m[17] no need to re-calculate when nonce m[3] changes.
+    //for (i=16; i<64; i++) { m[i]=((m[i-15]<<25|m[i-15]>>>7)^(m[i-15]<<14|m[i-15]>>>18)^m[i-15]>>>3)+m[i-7]+((m[i-2]<<15|m[i-2]>>>17)^(m[i-2]<<13|m[i-2]>>>19)^m[i-2]>>>10)+m[i-16] }    -> this line is the original Javascript code line.
+      for (int i=16; i<18; i++) { m[i]= ((m[i-15]<<25| (m[i-15]>>7) )^(m[i-15]<<14| (m[i-15]>>18) )^ (m[i-15]>>3) )+m[i-7]+((m[i-2]<<15| (m[i-2]>>17) )^(m[i-2]<<13| (m[i-2]>>19) )^ (m[i-2]>>10) )+m[i-16];   }
+    //redundant ->   for (int i=18; i<64; i++) { m[i]=0; }    // Important to initialize here so that m[0] till m[63] are defined as GLOBAL variable, before entering the loop below.
+
+      for (int i=0; i<64; i++) {mm[i]=0;}
+    //redundant ->   for (int i=0; i<8; i++) { mm[i]=0; }    // Important to initialize here so that mm[0] till mm[7] are defined as GLOBAL variable, before entering the loop below.
+      mm[8]=0x80000000;
+    //redundant ->   mm[9]=0; mm[10]=0; mm[11]=0; mm[12]=0; mm[13]=0; mm[14]=0;
+      mm[15]=0x00000100;
+    //redundant ->   for (int i=16; i<64; i++) { mm[i]=0; }  // Important to initialize here so that mm[16] till mm[63] are defined as GLOBAL variable, before entering the loop below.
+
+      midvalue0=midstate[0];  midvalue1=midstate[1];  midvalue2=midstate[2];  midvalue3=midstate[3];
+      midvalue4=midstate[4];  midvalue5=midstate[5];  midvalue6=midstate[6];  midvalue7=midstate[7];
+for (int i=0; i<3; i++) {
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  computation for 1st (i=0) -> 3rd (i=2) round, second-stage :   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      //   T1 = Ki  "mod 2^32 add"  reg_h   "mod 2^32 add"  Ch(e,f,g)  "mod 2^32 add"  SigmaBig1(e)  "mod 2^32 add"  m[i]
+      //   T2 =  SigmaBig0(a)    "mod 2^32 add"     Maj(a,b,c)
+      blocktemplate = h[i]+midvalue7+(midvalue4&midvalue5^~midvalue4&midvalue6)+((midvalue4<<26| (midvalue4>>6) )^(midvalue4<<21| (midvalue4>>11) )^(midvalue4<<7| (midvalue4>>25) ))+m[i];
+      midvalue7=midvalue6;               // reg_h  <-  reg_g
+      midvalue6=midvalue5;               // reg_g  <-  reg_f
+      midvalue5=midvalue4;               // reg_f  <-  reg_e
+      midvalue4=midvalue3+blocktemplate; // reg_e  <-  reg_d + T1
+      blocktemplate= blocktemplate+((midvalue0<<30| (midvalue0>>2) )^(midvalue0<<19| (midvalue0>>13) )^(midvalue0<<10| (midvalue0>>22) ))+(midvalue0&midvalue1^midvalue0&midvalue2^midvalue1&midvalue2);       // (T1+T2) = T1 + Sigmabig0(a) + Maj(a,b,c)
+      midvalue3=midvalue2;               // reg_d  <-  reg_c
+      midvalue2=midvalue1;               // reg_c  <-  reg_b
+      midvalue1=midvalue0;               // reg_b  <-  reg_a
+      midvalue0=blocktemplate;           // reg_a  <-  (T1+T2)
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+}
+      }   //the closing bracket for  "if(run==1){...}"  loop.
+
+}         //the closing bracket for the  "while(run==1){...}"  loop.
 
 
-}         //this is the closing bracket for the  CANCEL  condition.
+}         //the closing bracket for the  CANCEL  condition.
       run=0;
       //id="";      //comment this out, because id is needed to communicate between the cpu-node and HUB.
       if (result=="00000000") {result="";}       // this line is very important.
