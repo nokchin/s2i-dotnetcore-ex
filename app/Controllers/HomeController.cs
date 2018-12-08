@@ -274,15 +274,15 @@ bits="8c577e17";                       */
       // nonce1 & nonce2  are hex STRINGs, without the '0x' in front ... just to follow the convention used in 'MineBxxxxxx1' Javascript code.
       // [Value pairs:  0x6e19b093 = 1847177363 (decimal,2-million less) .  0x6e36ae73 = 1849077363 (decimal).  0x6e3527d3 = 1848977363 (decimal).  0x6e321a93 = 1848777363 (decimal)].
       // [value pairs:  0x5f5e100  = 100 million (decimal) . 0xbebc200  = 200 million (decimal).  ].
-      string nonce1 = "6d811a13";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal,1-million less).  0x6d811a13 = 18337177363 (decimal,12-million less).  0x6b5bc913 = 1801177363 (decimal,48-million less). ]
-      string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
+      string nonce1 = "6e383500";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal,1-million less).  0x6d811a13 = 18337177363 (decimal,12-million less).  0x6b5bc913 = 1801177363 (decimal,48-million less). ]
+      string nonce2 = "6e383520";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
     //[Note]: my program generates hashes from 'nonce1' till 'nonce2'-1 , and please pay extra attention to the situation where the last nonce of '0xffffffff' wraps around to '0'.
     //Example1:  1000/13 = 76 with remainder=12 .  So: [1st_range: 0~77] , [2nd_range: 77~154] , [3rd_range: 154~231] , ... , [13th_range: 924~0]->assuming '999' wraps around to '0'.
     //Example2:  13/3 = 4 with remainder=1 .  So: [1st_range: 0~5] , [2nd_range: 5~9] , [3rd_range: 9~0]->assuming '12' wraps around to '0'.
     //Example3:  12/3 = 4 with remainder=0 .  So: [1st_range: 0~4] , [2nd_range: 4~8] , [3rd_range: 8~0]->assuming '11' wraps around to '0'.
     //However, later I decided NOT to follow the 'fair' scheme of 'Example1' & 'Example2' above, because it is too complicated to implement in codes.
-      if (run==1) {
+      if (run==3) {
         blocktemplate=0xffffffff;   //by right the full-range here should be '0xffffffff+1' (=4,294,967,296 in decimal). However, an 'uint' variable can only take the maximum integer value of '0xffffffff' .
         blocktemplate=blocktemplate/cpucount;
         nonce1 = ((uint.Parse(id,System.Globalization.NumberStyles.HexNumber))*blocktemplate).ToString("x8");
