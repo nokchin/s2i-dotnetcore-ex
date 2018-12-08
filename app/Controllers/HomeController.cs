@@ -63,7 +63,8 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public static string id = "";    // the 'id' is a 3-digit hex-string format.
         public static uint cpucount = 0;
 
-        public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
+      //public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
+        public static string hub="http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/";     //the ending/last  '/'  is a must.
         public static uint runstatus0 = 0;
         public static uint runstatus1 = 0;
         public static uint runstatus2 = 0;
