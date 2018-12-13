@@ -63,8 +63,8 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public static string id = "";    // the 'id' is a 3-digit hex-string format.
         public static uint cpucount = 0;
 
-      //public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
-        public static string hub="http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/";     //the ending/last  '/'  is a must.
+        public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
+      //public static string hub="http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/";     //the ending/last  '/'  is a must.
         public static uint runstatus0 = 0;
         public static uint runstatus1 = 0;
         public static uint runstatus2 = 0;
@@ -157,7 +157,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         //Usage2:   ...Each_CPU_url.../set/00000000     -> this is the CANCEL command.
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce) {
-          if (!((nonce.Length==160) && (run==1))) {
+          if (!((nonce.Length>=160) && (run==1))) {
             if (result.Length>7) {
               if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.  Also do NOT make  (id="";)  here, because id is needed to communicate between cpu-node and the HUB.
             }
@@ -193,7 +193,7 @@ uint extra_seconds = 0;
         string merkleroot= "76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757";
         string mintime = "d1b45d5a";
         string bits = "8c577e17";
-      if ((result.Length==160) && (run==0)) {
+      if ((result.Length>=160) && (run==0)) {
         run=1;
         // [Note]:  for real block #504452, the 'result' (exclude the cpu/node-id and TOTAL cpu count number) should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
         midstate[0]=uint.Parse(result.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
@@ -211,12 +211,15 @@ uint extra_seconds = 0;
         bits =     result.Substring(146,8);
         id = result.Substring(154,3);       // the 'id' is a 3-digit hex-string format.
         cpucount = uint.Parse(result.Substring(157,3), System.Globalization.NumberStyles.HexNumber);
+        if (result.Length>160) {
+          hub = "http://" + result.Substring(160,(result.Length)-160) + "/";
+        }
         result="";   result1="";   //this line is very important.
         using (var myclient = new WebClient()) {
           var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
         }
       }
-      else if ((result1.Length==160) && (run==0)) {
+      else if ((result1.Length>=160) && (run==0)) {
         run=1;
         midstate[0]=uint.Parse(result1.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
         midstate[1]=uint.Parse(result1.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
@@ -233,6 +236,9 @@ uint extra_seconds = 0;
         bits =     result1.Substring(146,8);
         id = result1.Substring(154,3);       // the 'id' is a 3-digit hex-string format.
         cpucount = uint.Parse(result1.Substring(157,3), System.Globalization.NumberStyles.HexNumber);
+        if (result1.Length>160) {
+          hub = "http://" + result1.Substring(160,(result1.Length)-160) + "/";
+        }
         result="";   result1="";   //this line is very important.
         using (var myclient = new WebClient()) {
           var responseString = myclient.DownloadString(hub + "runstatus/s"+ id);   //  "/s"  means Set the 'runstatusX' bit to logic-1.
@@ -240,8 +246,8 @@ uint extra_seconds = 0;
       }
       else if (run==1) {   //reaching here means something has gone wrong !
         run=0;   id="";
-        if ((result=="00000000") || (result.Length==160)) {result="";}
-        if ((result1=="00000000") || (result1.Length==160)) {result1="";}
+        if ((result=="00000000") || (result.Length>=160)) {result="";}
+        if ((result1=="00000000") || (result1.Length>=160)) {result1="";}
       }
 
       uint blocktemplate=0;    // make 'blocktemplate' become a GLOBAL variable here.
