@@ -52,7 +52,7 @@ The .Length property returns the total number of items in an array:
             Console.WriteLine(a.GetLength(0));     // 10
             Console.WriteLine(a.GetLength(1));     // 11
             Console.WriteLine(a.GetLength(2));     // 12
-And on one-dimensional array,  .Length will return the same value as .GetLength(0) .            */
+And on one-dimensional array,  .Length will return the same value as .GetLength(0) .           */
         public static uint normalview = 1;
         private static System.Timers.Timer aTimer;
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute). This variable also serves as FIRST PLACE-HOLDER for main-hub's application program.
@@ -63,8 +63,8 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public static string id = "";    // the 'id' is a 3-digit hex-string format.
         public static uint cpucount = 0;
 
-        public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
-      //public static string hub="http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/";     //the ending/last  '/'  is a must.
+      //public static string hub="http://one-mainnhubb.d800.free-int.openshiftapps.com/";     //the ending/last  '/'  is a must.
+        public static string hub="http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/";     //the ending/last  '/'  is a must.
         public static uint runstatus0 = 0;
         public static uint runstatus1 = 0;
         public static uint runstatus2 = 0;
@@ -72,48 +72,88 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
 //         "http://two-mainnhubb.d800.free-int.openshiftapps.com/",
 //         "http://cuba-cubatest.d800.free-int.openshiftapps.com/",
 //         "http://test-cubatest.d800.free-int.openshiftapps.com/",
-
+//id  0 (hex):
            "http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+//id  1 (hex):
            "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+//id  2 (hex):
            "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+//id  3 (hex):
            "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+//id  4 (hex):
            "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  5 (hex):
            "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  6 (hex):
            "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+//id  7 (hex):
            "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+//id  8 (hex):
            "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+//id  9 (hex):
            "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+//id  a (hex):
            "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+//id  b (hex):
            "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+//id  c (hex):
            "http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+//id  d (hex):
            "http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+//id  e (hex):
            "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+//id  f (hex):
            "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+//id 10 (hex):
            "http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/",
+//id 11 (hex):
            "http://boy-patt8.7e14.starter-us-west-2.openshiftapps.com/",
+//id 12 (hex):
            "http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 13 (hex):
            "http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 14 (hex):
            "http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/",
+//id 15 (hex):
            "http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/",
+//id 16 (hex):
            "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+//id 17 (hex):
            "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+//id 18 (hex):
            "http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 19 (hex):
            "http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 1a (hex):
            "http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1b (hex):
            "http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1c (hex):
            "http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 1d (hex):
            "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 1e (hex):
            "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-           "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
+//         "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",      //this is the HUB.
+//id 1f (hex):
            "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+//id 20 (hex):
            "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+//id 21 (hex):
            "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+//id 22 (hex):
            "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+//id 23 (hex):
            "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 24 (hex):
            "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 25 (hex):
            "http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
+//id 26 (hex):
            "http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
+//id 27 (hex):
            "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
+//id 28 (hex):
            "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
         };
 
@@ -154,6 +194,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         }
 
         //Usage1:   ...Each_CPU_url.../set/{hex 160-digit string  :->  the 154-digit serialized blocktemplate header, plus the hex 3-digit cpu/node-id, plus the hex 3-digit TOTAL cpu-count number}
+        //  or      ...Each_CPU_url.../set/{hex 160-digit string(see above)  +  new HUB url(without the starting  "http://"  and  ending "/")   }
         //Usage2:   ...Each_CPU_url.../set/00000000     -> this is the CANCEL command.
         [HttpGet("set/{nonce}")]
         public void Mine(string nonce) {
@@ -281,15 +322,15 @@ bits="8c577e17";                       */
       // nonce1 & nonce2  are hex STRINGs, without the '0x' in front ... just to follow the convention used in 'MineBxxxxxx1' Javascript code.
       // [Value pairs:  0x6e19b093 = 1847177363 (decimal,2-million less) .  0x6e36ae73 = 1849077363 (decimal).  0x6e3527d3 = 1848977363 (decimal).  0x6e321a93 = 1848777363 (decimal)].
       // [value pairs:  0x5f5e100  = 100 million (decimal) . 0xbebc200  = 200 million (decimal).  ].
-      string nonce1 = "6e383500";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal,1-million less).  0x6d811a13 = 18337177363 (decimal,12-million less).  0x6b5bc913 = 1801177363 (decimal,48-million less). ]
-      string nonce2 = "6e383520";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
+      string nonce1 = "6d811a13";   // [Value pairs:  0x6e28f2d3 = 1848177363 (decimal,1-million less).  0x6d811a13 = 18337177363 (decimal,12-million less).  0x6b5bc913 = 1801177363 (decimal,48-million less). ]
+      string nonce2 = "0";  //I have tested with real cshtml experiment on RedHat OpenShift platform with zero 'nonce2' value, and my cshtml program below can really terminate/exit the 'do-while' loop properly.
 
     //[Note]: my program generates hashes from 'nonce1' till 'nonce2'-1 , and please pay extra attention to the situation where the last nonce of '0xffffffff' wraps around to '0'.
     //Example1:  1000/13 = 76 with remainder=12 .  So: [1st_range: 0~77] , [2nd_range: 77~154] , [3rd_range: 154~231] , ... , [13th_range: 924~0]->assuming '999' wraps around to '0'.
     //Example2:  13/3 = 4 with remainder=1 .  So: [1st_range: 0~5] , [2nd_range: 5~9] , [3rd_range: 9~0]->assuming '12' wraps around to '0'.
     //Example3:  12/3 = 4 with remainder=0 .  So: [1st_range: 0~4] , [2nd_range: 4~8] , [3rd_range: 8~0]->assuming '11' wraps around to '0'.
     //However, later I decided NOT to follow the 'fair' scheme of 'Example1' & 'Example2' above, because it is too complicated to implement in codes.
-      if (run==3) {
+      if (run==1) {
         blocktemplate=0xffffffff;   //by right the full-range here should be '0xffffffff+1' (=4,294,967,296 in decimal). However, an 'uint' variable can only take the maximum integer value of '0xffffffff' .
         blocktemplate=blocktemplate/cpucount;
         nonce1 = ((uint.Parse(id,System.Globalization.NumberStyles.HexNumber))*blocktemplate).ToString("x8");
@@ -1276,6 +1317,134 @@ for (int i=0; i<3; i++) {
               if (action=="s") {runstatus1=runstatus1|0x00000001;} else
               if (action=="r") {runstatus1=runstatus1&0xfffffffe;}
               break;
+            case "040":
+              if (action=="s") {runstatus2=runstatus2|0x80000000;} else
+              if (action=="r") {runstatus2=runstatus2&0x7fffffff;}
+              break;
+            case "041":
+              if (action=="s") {runstatus2=runstatus2|0x40000000;} else
+              if (action=="r") {runstatus2=runstatus2&0xbfffffff;}
+              break;
+            case "042":
+              if (action=="s") {runstatus2=runstatus2|0x20000000;} else
+              if (action=="r") {runstatus2=runstatus2&0xdfffffff;}
+              break;
+            case "043":
+              if (action=="s") {runstatus2=runstatus2|0x10000000;} else
+              if (action=="r") {runstatus2=runstatus2&0xefffffff;}
+              break;
+            case "044":
+              if (action=="s") {runstatus2=runstatus2|0x08000000;} else
+              if (action=="r") {runstatus2=runstatus2&0xf7ffffff;}
+              break;
+            case "045":
+              if (action=="s") {runstatus2=runstatus2|0x04000000;} else
+              if (action=="r") {runstatus2=runstatus2&0xfbffffff;}
+              break;
+            case "046":
+              if (action=="s") {runstatus2=runstatus2|0x02000000;} else
+              if (action=="r") {runstatus2=runstatus2&0xfdffffff;}
+              break;
+            case "047":
+              if (action=="s") {runstatus2=runstatus2|0x01000000;} else
+              if (action=="r") {runstatus2=runstatus2&0xfeffffff;}
+              break;
+            case "048":
+              if (action=="s") {runstatus2=runstatus2|0x00800000;} else
+              if (action=="r") {runstatus2=runstatus2&0xff7fffff;}
+              break;
+            case "049":
+              if (action=="s") {runstatus2=runstatus2|0x00400000;} else
+              if (action=="r") {runstatus2=runstatus2&0xffbfffff;}
+              break;
+            case "04a":
+              if (action=="s") {runstatus2=runstatus2|0x00200000;} else
+              if (action=="r") {runstatus2=runstatus2&0xffdfffff;}
+              break;
+            case "04b":
+              if (action=="s") {runstatus2=runstatus2|0x00100000;} else
+              if (action=="r") {runstatus2=runstatus2&0xffefffff;}
+              break;
+            case "04c":
+              if (action=="s") {runstatus2=runstatus2|0x00080000;} else
+              if (action=="r") {runstatus2=runstatus2&0xfff7ffff;}
+              break;
+            case "04d":
+              if (action=="s") {runstatus2=runstatus2|0x00040000;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffbffff;}
+              break;
+            case "04e":
+              if (action=="s") {runstatus2=runstatus2|0x00020000;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffdffff;}
+              break;
+            case "04f":
+              if (action=="s") {runstatus2=runstatus2|0x00010000;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffeffff;}
+              break;
+            case "050":
+              if (action=="s") {runstatus2=runstatus2|0x00008000;} else
+              if (action=="r") {runstatus2=runstatus2&0xffff7fff;}
+              break;
+            case "051":
+              if (action=="s") {runstatus2=runstatus2|0x00004000;} else
+              if (action=="r") {runstatus2=runstatus2&0xffffbfff;}
+              break;
+            case "052":
+              if (action=="s") {runstatus2=runstatus2|0x00002000;} else
+              if (action=="r") {runstatus2=runstatus2&0xffffdfff;}
+              break;
+            case "053":
+              if (action=="s") {runstatus2=runstatus2|0x00001000;} else
+              if (action=="r") {runstatus2=runstatus2&0xffffefff;}
+              break;
+            case "054":
+              if (action=="s") {runstatus2=runstatus2|0x00000800;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffff7ff;}
+              break;
+            case "055":
+              if (action=="s") {runstatus2=runstatus2|0x00000400;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffffbff;}
+              break;
+            case "056":
+              if (action=="s") {runstatus2=runstatus2|0x00000200;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffffdff;}
+              break;
+            case "057":
+              if (action=="s") {runstatus2=runstatus2|0x00000100;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffffeff;}
+              break;
+            case "058":
+              if (action=="s") {runstatus2=runstatus2|0x00000080;} else
+              if (action=="r") {runstatus2=runstatus2&0xffffff7f;}
+              break;
+            case "059":
+              if (action=="s") {runstatus2=runstatus2|0x00000040;} else
+              if (action=="r") {runstatus2=runstatus2&0xffffffbf;}
+              break;
+            case "05a":
+              if (action=="s") {runstatus2=runstatus2|0x00000020;} else
+              if (action=="r") {runstatus2=runstatus2&0xffffffdf;}
+              break;
+            case "05b":
+              if (action=="s") {runstatus2=runstatus2|0x00000010;} else
+              if (action=="r") {runstatus2=runstatus2&0xffffffef;}
+              break;
+            case "05c":
+              if (action=="s") {runstatus2=runstatus2|0x00000008;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffffff7;}
+              break;
+            case "05d":
+              if (action=="s") {runstatus2=runstatus2|0x00000004;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffffffb;}
+              break;
+            case "05e":
+              if (action=="s") {runstatus2=runstatus2|0x00000002;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffffffd;}
+              break;
+            case "05f":
+              if (action=="s") {runstatus2=runstatus2|0x00000001;} else
+              if (action=="r") {runstatus2=runstatus2&0xfffffffe;}
+              break;
             default:
               break;
           }
@@ -1284,15 +1453,23 @@ for (int i=0; i<3; i++) {
 
         //-------------------------------------------------------------------------------------------------------------------------------------------//
 
-        //Usage:   ....Hub_url..../hub_btc/{154-digit hex-string serialized blocktemplate header ... exclude the cpu/node-id and TOTAL cpu-count number}
+        //Usage:   ...HUB_url.../hub_btc/{154-digit hex-string serialized blocktemplate header ... exclude the cpu/node-id and TOTAL cpu-count number}
+        //  or     ...HUB_url.../hub_btc/{154-digit hex-string(see above)  +  new HUB url(without the starting  "http://"  and  ending "/")   }
         [HttpGet("hub_btc/{str}")]
         public void Mine(int dummy, string str) {
           result="";   result1="";   //should not reset 'runstatusX' hub variables to "0" here, because the value of 'runstatusX' hub variables should be controlled/sent by various CPUs/nodes.
           //cpu_list("set/"+str);    //replace this original line with the code-block below.
           cpucount = (uint) cpu.Length;
           for (uint i=0; i<cpu.Length; i++) {
-            using (var myclient = new WebClient()) {
-              var responseString = myclient.DownloadString( cpu[i]+"set/"+str+(i.ToString("x3"))+((cpu.Length).ToString("x3")) );   //3 hex-digits of cpu node-id, followed by 3 hex-digits of TOTAL cpu/node count number.
+            if (str.Length==154) {
+              using (var myclient = new WebClient()) {
+                var responseString = myclient.DownloadString( cpu[i]+"set/"+str+(i.ToString("x3"))+((cpu.Length).ToString("x3")) );   //3 hex-digits of cpu node-id, followed by 3 hex-digits of TOTAL cpu/node count number.
+              }
+            }
+            else if (str.Length>154) {
+              using (var myclient = new WebClient()) {
+                var responseString = myclient.DownloadString( cpu[i]+"set/"+str.Substring(0,154)+(i.ToString("x3"))+((cpu.Length).ToString("x3"))+str.Substring(154,(str.Length)-154) );
+              }
             }
           }
         }
