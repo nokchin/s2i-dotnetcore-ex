@@ -122,8 +122,8 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
 //id 18 (hex):
            "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 19 (hex):   [this is the default HUB]
-           "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 19 (hex):   [this is the default HUB. Actually the HUB can also be used to calculate hash, but doing so will occupy/load & slow-down the HUB, causing it to possibly MISS/FAIL receiving/accepting the desired nonce value/result sent by other cpu/nodes.]
+//         "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
 //id 1a (hex):
            "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
 //id 1b (hex):
@@ -1465,14 +1465,16 @@ for (int i=0; i<3; i++) {
           //cpu_list("set/"+str);    //replace this original line with the code-block below.
           cpucount = (uint) cpu.Length;
           for (uint i=0; i<cpu.Length; i++) {
-            if (str.Length==154) {
-              using (var myclient = new WebClient()) {
-                var responseString = myclient.DownloadString( cpu[i]+"set/"+str+(i.ToString("x3"))+((cpu.Length).ToString("x3")) );   //3 hex-digits of cpu node-id, followed by 3 hex-digits of TOTAL cpu/node count number.
+            if (!checkstatus(i)) {
+              if (str.Length==154) {
+                using (var myclient = new WebClient()) {
+                  var responseString = myclient.DownloadString( cpu[i]+"set/"+str+(i.ToString("x3"))+((cpu.Length).ToString("x3")) );   //3 hex-digits of cpu node-id, followed by 3 hex-digits of TOTAL cpu/node count number.
+                }
               }
-            }
-            else if (str.Length>154) {
-              using (var myclient = new WebClient()) {
-                var responseString = myclient.DownloadString( cpu[i]+"set/"+str.Substring(0,154)+(i.ToString("x3"))+((cpu.Length).ToString("x3"))+str.Substring(154,(str.Length)-154) );
+              else if (str.Length>154) {
+                using (var myclient = new WebClient()) {
+                  var responseString = myclient.DownloadString( cpu[i]+"set/"+str.Substring(0,154)+(i.ToString("x3"))+((cpu.Length).ToString("x3"))+str.Substring(154,(str.Length)-154) );
+                }
               }
             }
           }
@@ -1481,13 +1483,27 @@ for (int i=0; i<3; i++) {
         //Usage:   ....Hub_url..../hub_stop
         [HttpGet("hub_stop")]
         public void Mine(bool dummy) {
-          cpu_list("stop");
+          //cpu_list("stop");    //replace this original line with the code-block below.
+          for (uint i=0; i<cpu.Length; i++) {
+            if (checkstatus(i)) {
+              using (var myclient = new WebClient()) {
+                var responseString = myclient.DownloadString(cpu[i]+"stop");
+              }
+            }
+          }
         }
 
         //Usage:   ....Hub_url..../hub_cancel
         [HttpGet("hub_cancel")]
         public void Mine(char dummy) {
-          cpu_list("set/00000000");
+          //cpu_list("set/00000000");    //replace this original line with the code-block below.
+          for (uint i=0; i<cpu.Length; i++) {
+            if (checkstatus(i)) {        //Strictly speaking, we should NOT do checkstatus() here for CANCEL operation. But for the sake of practical-usage, it makes sense to perform checkstatus() here.
+              using (var myclient = new WebClient()) {
+                var responseString = myclient.DownloadString(cpu[i]+"set/00000000");
+              }
+            }
+          }
         }
 
         private static void cpu_list(string str) {
@@ -1496,6 +1512,304 @@ for (int i=0; i<3; i++) {
               var responseString = myclient.DownloadString(cpu[i]+str);
             }
           }
+        }
+
+        private static bool checkstatus(uint i) {
+          bool dummy = false;
+          string str = i.ToString("x3");
+          switch(str) {
+            case "000":
+              if ((runstatus0&0x80000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "001":
+              if ((runstatus0&0x40000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "002":
+              if ((runstatus0&0x20000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "003":
+              if ((runstatus0&0x10000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "004":
+              if ((runstatus0&0x08000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "005":
+              if ((runstatus0&0x04000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "006":
+              if ((runstatus0&0x02000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "007":
+              if ((runstatus0&0x01000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "008":
+              if ((runstatus0&0x00800000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "009":
+              if ((runstatus0&0x00400000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "00a":
+              if ((runstatus0&0x00200000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "00b":
+              if ((runstatus0&0x00100000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "00c":
+              if ((runstatus0&0x00080000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "00d":
+              if ((runstatus0&0x00040000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "00e":
+              if ((runstatus0&0x00020000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "00f":
+              if ((runstatus0&0x00010000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "010":
+              if ((runstatus0&0x00008000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "011":
+              if ((runstatus0&0x00004000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "012":
+              if ((runstatus0&0x00002000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "013":
+              if ((runstatus0&0x00001000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "014":
+              if ((runstatus0&0x00000800)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "015":
+              if ((runstatus0&0x00000400)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "016":
+              if ((runstatus0&0x00000200)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "017":
+              if ((runstatus0&0x00000100)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "018":
+              if ((runstatus0&0x00000080)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "019":
+              if ((runstatus0&0x00000040)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "01a":
+              if ((runstatus0&0x00000020)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "01b":
+              if ((runstatus0&0x00000010)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "01c":
+              if ((runstatus0&0x00000008)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "01d":
+              if ((runstatus0&0x00000004)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "01e":
+              if ((runstatus0&0x00000002)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "01f":
+              if ((runstatus0&0x00000001)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "020":
+              if ((runstatus1&0x80000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "021":
+              if ((runstatus1&0x40000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "022":
+              if ((runstatus1&0x20000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "023":
+              if ((runstatus1&0x10000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "024":
+              if ((runstatus1&0x08000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "025":
+              if ((runstatus1&0x04000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "026":
+              if ((runstatus1&0x02000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "027":
+              if ((runstatus1&0x01000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "028":
+              if ((runstatus1&0x00800000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "029":
+              if ((runstatus1&0x00400000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "02a":
+              if ((runstatus1&0x00200000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "02b":
+              if ((runstatus1&0x00100000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "02c":
+              if ((runstatus1&0x00080000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "02d":
+              if ((runstatus1&0x00040000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "02e":
+              if ((runstatus1&0x00020000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "02f":
+              if ((runstatus1&0x00010000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "030":
+              if ((runstatus1&0x00008000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "031":
+              if ((runstatus1&0x00004000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "032":
+              if ((runstatus1&0x00002000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "033":
+              if ((runstatus1&0x00001000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "034":
+              if ((runstatus1&0x00000800)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "035":
+              if ((runstatus1&0x00000400)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "036":
+              if ((runstatus1&0x00000200)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "037":
+              if ((runstatus1&0x00000100)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "038":
+              if ((runstatus1&0x00000080)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "039":
+              if ((runstatus1&0x00000040)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "03a":
+              if ((runstatus1&0x00000020)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "03b":
+              if ((runstatus1&0x00000010)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "03c":
+              if ((runstatus1&0x00000008)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "03d":
+              if ((runstatus1&0x00000004)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "03e":
+              if ((runstatus1&0x00000002)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "03f":
+              if ((runstatus1&0x00000001)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "040":
+              if ((runstatus2&0x80000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "041":
+              if ((runstatus2&0x40000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "042":
+              if ((runstatus2&0x20000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "043":
+              if ((runstatus2&0x10000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "044":
+              if ((runstatus2&0x08000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "045":
+              if ((runstatus2&0x04000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "046":
+              if ((runstatus2&0x02000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "047":
+              if ((runstatus2&0x01000000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "048":
+              if ((runstatus2&0x00800000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "049":
+              if ((runstatus2&0x00400000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "04a":
+              if ((runstatus2&0x00200000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "04b":
+              if ((runstatus2&0x00100000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "04c":
+              if ((runstatus2&0x00080000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "04d":
+              if ((runstatus2&0x00040000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "04e":
+              if ((runstatus2&0x00020000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "04f":
+              if ((runstatus2&0x00010000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "050":
+              if ((runstatus2&0x00008000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "051":
+              if ((runstatus2&0x00004000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "052":
+              if ((runstatus2&0x00002000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "053":
+              if ((runstatus2&0x00001000)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "054":
+              if ((runstatus2&0x00000800)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "055":
+              if ((runstatus2&0x00000400)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "056":
+              if ((runstatus2&0x00000200)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "057":
+              if ((runstatus2&0x00000100)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "058":
+              if ((runstatus2&0x00000080)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "059":
+              if ((runstatus2&0x00000040)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "05a":
+              if ((runstatus2&0x00000020)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "05b":
+              if ((runstatus2&0x00000010)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "05c":
+              if ((runstatus2&0x00000008)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "05d":
+              if ((runstatus2&0x00000004)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "05e":
+              if ((runstatus2&0x00000002)==0) {dummy=false;} else {dummy=true;}
+              break;
+            case "05f":
+              if ((runstatus2&0x00000001)==0) {dummy=false;} else {dummy=true;}
+              break;
+            default:
+              break;
+          }
+          return dummy;
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------------------//
