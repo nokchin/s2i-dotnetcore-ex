@@ -52,7 +52,7 @@ The .Length property returns the total number of items in an array:
             Console.WriteLine(a.GetLength(0));     // 10
             Console.WriteLine(a.GetLength(1));     // 11
             Console.WriteLine(a.GetLength(2));     // 12
-And on one-dimensional array,  .Length will return the same value as .GetLength(0) .           */
+And on one-dimensional array,  .Length will return the same value as .GetLength(0) .             */
         public static uint normalview = 1;
         private static System.Timers.Timer aTimer;
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute). This variable also serves as FIRST PLACE-HOLDER for main-hub's application program.
@@ -68,7 +68,98 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
         public static uint runstatus0 = 0;
         public static uint runstatus1 = 0;
         public static uint runstatus2 = 0;
-      //public static string[] cpu = { };
+        public static string[] cpu = {
+//         "http://two-mainnhubb.d800.free-int.openshiftapps.com/",
+//         "http://cuba-cubatest.d800.free-int.openshiftapps.com/",
+//         "http://test-cubatest.d800.free-int.openshiftapps.com/",
+//id  0 (hex):
+           "http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+//id  1 (hex):
+           "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
+//id  2 (hex):
+           "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+//id  3 (hex):
+           "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
+//id  4 (hex):
+           "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  5 (hex):
+           "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  6 (hex):
+           "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+//id  7 (hex):
+           "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+//id  8 (hex):
+           "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+//id  9 (hex):
+           "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
+//id  a (hex):
+           "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+//id  b (hex):
+           "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+//id  c (hex):
+           "http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
+//id  d (hex):
+           "http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
+//id  e (hex):
+           "http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/",
+//id  f (hex):
+           "http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/",
+//id 10 (hex):
+           "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+//id 11 (hex):
+           "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+//id 12 (hex):
+           "http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 13 (hex):
+           "http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 14 (hex):
+           "http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+//id 15 (hex):
+           "http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+//id 16 (hex):
+           "http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 17 (hex):
+           "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 18 (hex):
+           "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 19 (hex):   [this is the default HUB]
+           "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 1a (hex):
+           "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1b (hex):
+           "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1c (hex):
+           "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1d (hex):
+           "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1e (hex):
+           "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 1f (hex):
+           "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
+//id 20 (hex):
+           "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
+//id 21 (hex):
+           "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
+        };
+
+//id 22 (hex):
+//         "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+//id 23 (hex):
+//         "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
+//id 24 (hex):
+//         "http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+//id 25 (hex):
+//         "http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
+//id 26 (hex):
+//         "http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/",
+//id 27 (hex):
+//         "http://boy-patt8.7e14.starter-us-west-2.openshiftapps.com/",
+//id 28 (hex):
+//         "http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
+//id 29 (hex):
+//         "http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
+
+
 
 
 /* CSGoh: the code-block below can work. In fact, I use the code-block below as my first experiment to try/test out various fundamental/basic concepts ...
@@ -1365,7 +1456,7 @@ for (int i=0; i<3; i++) {
 
 
         //-------------------------------------------------------------------------------------------------------------------------------------------//
-/*
+
         //Usage:   ...HUB_url.../hub_btc/{154-digit hex-string serialized blocktemplate header ... exclude the cpu/node-id and TOTAL cpu-count number}
         //  or     ...HUB_url.../hub_btc/{154-digit hex-string(see above)  +  new HUB url(without the starting  "http://"  and  ending "/")   }
         [HttpGet("hub_btc/{str}")]
@@ -1406,7 +1497,7 @@ for (int i=0; i<3; i++) {
             }
           }
         }
-*/
+
         //-------------------------------------------------------------------------------------------------------------------------------------------//
 
 
