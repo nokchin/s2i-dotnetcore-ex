@@ -11,7 +11,7 @@ using app.Models;
 using System.Timers;                      //CSGoh: add in this line, so that can use 'timer'.
 
 namespace app.Controllers {
-    public class HomeController : Controller {     //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
+    public class HomeController : Controller {    //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
         public IActionResult Index() {
           //return View();  //CSGoh: I replace this original line with the new line below, to avoid run-time error if PageModel is used in  Index.cshtml.
             return View(new ErrorViewModel { Message = "Second Hello!" });  //A new expression requires (), [], or {} after type;  if not, got compilation error!
@@ -52,7 +52,7 @@ The .Length property returns the total number of items in an array:
             Console.WriteLine(a.GetLength(0));     // 10
             Console.WriteLine(a.GetLength(1));     // 11
             Console.WriteLine(a.GetLength(2));     // 12
-And on one-dimensional array,  .Length will return the same value as .GetLength(0) .             */
+And on one-dimensional array,  .Length will return the same value as .GetLength(0) .            */
         public static uint normalview = 1;
         private static System.Timers.Timer aTimer;
         public static string result = "";    //the correct nonce value that is wanted (used in the method that has the  [HttpGet("btc")]  attribute). This variable also serves as FIRST PLACE-HOLDER for main-hub's application program.
@@ -122,41 +122,42 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
 //id 18 (hex):
            "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 19 (hex):   [this is the default HUB. Actually the HUB can also be used to calculate hash, but doing so will occupy/load & slow-down the HUB, causing it to possibly MISS/FAIL receiving/accepting the desired nonce value/result sent by other cpu/nodes.]
+//id    (hex):   [this is the default HUB. Actually the HUB can also be used to calculate hash, but doing so will occupy/load & slow-down the HUB, causing it to possibly MISS/FAIL receiving/accepting the desired nonce value/result sent by other cpu/nodes.]
 //         "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 1a (hex):
+//id 19 (hex):
            "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1b (hex):
+//id 1a (hex):
            "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1c (hex):
+//id 1b (hex):
            "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1d (hex):
+//id 1c (hex):
            "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1e (hex):
+//id 1d (hex):
            "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 1f (hex):
+//id 1e (hex):
            "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 20 (hex):
+//id 1f (hex):
            "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
-//id 21 (hex):
+//id 20 (hex):
            "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
         };
 
-//id 22 (hex):
+
+//id  0 (hex):
 //         "http://app-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
-//id 23 (hex):
+//id  1 (hex):
 //         "http://bee-app3bee.7e14.starter-us-west-2.openshiftapps.com/",
-//id 24 (hex):
+//id  2 (hex):
 //         "http://pea-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
-//id 25 (hex):
+//id  3 (hex):
 //         "http://roo-pearoo6.7e14.starter-us-west-2.openshiftapps.com/",
-//id 26 (hex):
+//id  4 (hex):
 //         "http://afe-patt8.7e14.starter-us-west-2.openshiftapps.com/",
-//id 27 (hex):
+//id  5 (hex):
 //         "http://boy-patt8.7e14.starter-us-west-2.openshiftapps.com/",
-//id 28 (hex):
+//id  6 (hex):
 //         "http://nin-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
-//id 29 (hex):
+//id    (hex):
 //         "http://teu-nin19teu.7e14.starter-us-west-2.openshiftapps.com/",
 
 
@@ -230,6 +231,8 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
       result = "";      // reset 'result' to null everytime this Method is called/entered. This is to clear/reset whatever previous nonce value that this string variable may hold/contain.
       result1= "";
 while ((result!="00000000") && (result1!="00000000")) {     // if either 'result' or 'result1' is "00000000" , then it means the  CANCEL  condition.
+loopcount++;
+if (loopcount>2001) {loopcount=1;}
 uint extra_seconds = 0;
       //Below is the real block #504452  info/data.
         uint[] midstate = {0xc022dc5f,0x48274e98,0x6e353555,0x47bfc523,0x4811a092,0x207c9749,0x7657c67e,0x562a335c};
@@ -239,7 +242,7 @@ uint extra_seconds = 0;
         string mintime = "d1b45d5a";
         string bits = "8c577e17";
       if ((result.Length>=160) && (run==0)) {
-        run=1;
+        run=1;    loopcount=0;   //clearing loopcount to '0' is not so important/critical.
         // [Note]:  for real block #504452, the 'result' (exclude the cpu/node-id and TOTAL cpu count number) should take the value of:  c022dc5f48274e986e35355547bfc5234811a092207c97497657c67e562a335c170x7e578c76dc896b48d682e80c6e96368649634e57742a1eeb171dd97c259ce0c6d6a757d1b45d5a8c577e17
         midstate[0]=uint.Parse(result.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
         midstate[1]=uint.Parse(result.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
@@ -265,7 +268,7 @@ uint extra_seconds = 0;
         }
       }
       else if ((result1.Length>=160) && (run==0)) {
-        run=1;
+        run=1;    loopcount=0;   //clearing loopcount to '0' is not so important/critical.
         midstate[0]=uint.Parse(result1.Substring(0,8), System.Globalization.NumberStyles.HexNumber);
         midstate[1]=uint.Parse(result1.Substring(8,8), System.Globalization.NumberStyles.HexNumber);
         midstate[2]=uint.Parse(result1.Substring(16,8), System.Globalization.NumberStyles.HexNumber);
@@ -534,6 +537,7 @@ for (int i=0; i<64; i++) {
 //  PHP:         echo dechex($m[3]&0xffffffff);       echo "<BR>";
             result = m[3].ToString("x8");     // the correct/desired nonce value.
             result = result + "_" + extra_seconds.ToString("x4") + "HEX";
+            result1 = "";
             str = hub + "set/" + result;
 /* CSGoh: the code block below doesn't work on .NET Core 2.1 , I get this runtime error message:   ProtocolViolationException: Cannot send a content-body with this verb-type ->  System.Net.HttpWebRequest.InternalGetRequestStream() ,  System.Net.HttpWebRequest.GetRequestStream() .
             WebRequest myWebRequest = WebRequest.Create(str);    //WebRequest myWebRequest = WebRequest.Create("http://two-one.d800.free-int.openshiftapps.com/set/{nonce}");
@@ -549,11 +553,16 @@ for (int i=0; i<64; i++) {
             }
           //myclient.Close();   //redundant. The advantage of the "using" statement above (generally the preferred way of handling an open STREAM or CONNECTION) is that it ensures the stream/connection is closed and disposed of automatically/properly upon exiting the "using" statement.
           //If the "using" statement is NOT used, then we have to close the stream/connection manually, like:   myclient.Close();
+/* The original code-block below can work, and it is used to repeatedly write/send the desired nonce result to the HUB. Later I don't want to do this anymore, so I replace the original code-block below with the new  "run=0; ..."  code-block.
             SetTimer();
             //run=1;   //Need to comment out this line here, because  "run" now is set to '1' on top.
             while (run==1) {}      // while (true) {}
             aTimer.Stop();
-            aTimer.Dispose();
+            aTimer.Dispose();      */
+            run=0;
+            using (var myclient = new WebClient()) {
+              var responseString = myclient.DownloadString(hub + "runstatus/r"+ id);   //  "/r"  means Reset the 'runstatusX' bit to logic-0.
+            }
 
 //          str = new Audio("buzzer_x.wav"); // buffers automatically when created
 //          str.play();
