@@ -200,17 +200,23 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
 
         //Usage1:   ...Each_CPU_url.../set/{hex 160-digit string  :->  the 154-digit serialized blocktemplate header, plus the hex 3-digit cpu/node-id, plus the hex 3-digit TOTAL cpu-count number}
         //  or      ...Each_CPU_url.../set/{hex 160-digit string(see above)  +  new HUB url(without the starting  "http://"  and  ending "/")   }
-        //Usage2:   ...Each_CPU_url.../set/00000000     -> this is the CANCEL command.
+        //Usage2:   ...Each_CPU_url.../set/runstatus0?value=89abcdef  or  /set/runstatus1?value=0  or  /set/runstatus2?value=ffffffff  or  /set/result?value=<any_string>  or  /set/result1?value=<any_string>  or  /set/result (null string into 'result')  or  /set/result1 (null string into 'result1')
+        //Usage3:   ...Each_CPU_url.../set/00000000     -> this is the CANCEL command.
         [HttpGet("set/{nonce}")]
-        public void Mine(string nonce) {
-          if (!((nonce.Length>=160) && (run==1))) {
-            if (result.Length>7) {
-              if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.  Also do NOT make  (id="";)  here, because id is needed to communicate between cpu-node and the HUB.
-            }
-            else {
-              if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.  Also do NOT make  (id="";)  here, because id is needed to communicate between cpu-node and the HUB.
-            }
-          }
+        public void Mine(string nonce, string value) {
+          if (nonce=="runstatus0") {runstatus0=uint.Parse(value,System.Globalization.NumberStyles.HexNumber);}
+          else if (nonce=="runstatus1") {runstatus1=uint.Parse(value,System.Globalization.NumberStyles.HexNumber);}
+          else if (nonce=="runstatus2") {runstatus2=uint.Parse(value,System.Globalization.NumberStyles.HexNumber);}
+          else if (nonce=="result") {result=value;}
+          else if (nonce=="result1") {result1=value;}
+          else if (!((nonce.Length>=160) && (run==1))) {
+                 if (result.Length>7) {
+                   if ((result!=nonce) && (!(result1.Length>7)) && (nonce.Length>7)) {result1=nonce;  if(nonce=="00000000"){run=0;}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.  Also do NOT make  (id="";)  here, because id is needed to communicate between cpu-node and the HUB.
+                 }
+                 else {
+                   if (nonce.Length>7) {result=nonce;  if(nonce=="00000000"){run=0;}  }   //do NOT make 'result' & 'result1' to null-string ""  inside the  "if(nonce=="00000000"){...}"  statement.  Also do NOT make  (id="";)  here, because id is needed to communicate between cpu-node and the HUB.
+                 }
+               }
         }
 
 
