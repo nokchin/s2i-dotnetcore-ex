@@ -11,7 +11,7 @@ using app.Models;
 using System.Timers;                      //CSGoh: add in this line, so that can use 'timer'.
 
 namespace app.Controllers {
-    public class HomeController : Controller {    //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
+    public class HomeController : Controller {     //CSGoh: At first I add in 'WebRequest' here, and I get this compilation error:   Class 'HomeController' cannot have multiple base classes: 'Controller' and 'WebRequest' .
         public IActionResult Index() {
           //return View();  //CSGoh: I replace this original line with the new line below, to avoid run-time error if PageModel is used in  Index.cshtml.
             return View(new ErrorViewModel { Message = "Second Hello!" });  //A new expression requires (), [], or {} after type;  if not, got compilation error!
