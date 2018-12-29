@@ -124,22 +124,22 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
 //id    (hex):   [this is the default HUB. Actually the HUB can also be used to calculate hash, but doing so will occupy/load & slow-down the HUB, causing it to possibly MISS/FAIL receiving/accepting the desired nonce value/result sent by other cpu/nodes.]
 //         "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 19 (hex):   quite fast
-           "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1a (hex):   quite fast
-           "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1b (hex):
-           "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+//id 19 (hex):   quite fast, cannot compile/build new software into it
+//         "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1a (hex):   quite fast, cannot compile/build new software into it
+//         "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1b (hex):   quite fast
+//         "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
 //id 1c (hex):
-           "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1d (hex):
+//         "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
+//id 1d (hex):   fast
            "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 1e (hex):
+//id 1e (hex):   fast
            "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 1f (hex):
-           "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
-//id 20 (hex):
-           "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
+//id 1f (hex):   fast, cannot compile/build new software into it
+//         "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
+//id 20 (hex):   fast, cannot compile/build new software into it
+//         "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
         };
 
 
