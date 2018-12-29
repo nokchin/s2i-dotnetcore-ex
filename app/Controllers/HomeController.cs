@@ -80,10 +80,10 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
 //id  3 (hex):
            "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-//id  4 (hex):
-           "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-//id  5 (hex):
-           "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  4 (hex):  slow, loopcount counting
+//         "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  5 (hex):  slow
+//         "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
 //id  6 (hex):
            "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
 //id  7 (hex):
@@ -92,41 +92,41 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
 //id  9 (hex):
            "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
-//id  a (hex):
+//id  a (hex):   fast
            "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-//id  b (hex):
+//id  b (hex):   fast
            "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-//id  c (hex):
+//id  c (hex):   fast
            "http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
-//id  d (hex):
+//id  d (hex):   fast
            "http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
-//id  e (hex):
+//id  e (hex):   fast, even it is in  us-east-1  cluster
            "http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/",
-//id  f (hex):
+//id  f (hex):   acceptable?
            "http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/",
-//id 10 (hex):
-           "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
-//id 11 (hex):
-           "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
-//id 12 (hex):
+//id 10 (hex):   slow
+//         "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+//id 11 (hex):   slow
+//         "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+//id 12 (hex):   fast
            "http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 13 (hex):
+//id 13 (hex):   fast
            "http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 14 (hex):
-           "http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
-//id 15 (hex):
-           "http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
-//id 16 (hex):
+//id 14 (hex):   not yet update software
+//         "http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+//id 15 (hex):   not yet update software
+//         "http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
+//id 16 (hex):   fast
            "http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
 //id 17 (hex):
            "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 18 (hex):
+//id 18 (hex):   fast
            "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
 //id    (hex):   [this is the default HUB. Actually the HUB can also be used to calculate hash, but doing so will occupy/load & slow-down the HUB, causing it to possibly MISS/FAIL receiving/accepting the desired nonce value/result sent by other cpu/nodes.]
 //         "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 19 (hex):
+//id 19 (hex):   quite fast
            "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1a (hex):
+//id 1a (hex):   quite fast
            "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
 //id 1b (hex):
            "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
