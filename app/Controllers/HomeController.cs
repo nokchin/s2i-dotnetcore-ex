@@ -72,73 +72,73 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
 //         "http://two-mainnhubb.d800.free-int.openshiftapps.com/",
 //         "http://cuba-cubatest.d800.free-int.openshiftapps.com/",
 //         "http://test-cubatest.d800.free-int.openshiftapps.com/",
-//id  0 (hex):
+//id  000 (hex):   X... ....
            "http://kktan-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
-//id  1 (hex):
+//id  001 (hex):   .X.. ....
            "http://winny-pisang0.a3c1.starter-us-west-1.openshiftapps.com/",
-//id  2 (hex):
+//id  002 (hex):   ..X. ....
            "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-//id  3 (hex):
+//id  003 (hex):   ...X ....
            "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-//id  4 (hex):  slow, loopcount counting
+//id    (hex):  slow, loopcount counting
 //         "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-//id  5 (hex):  slow
+//id    (hex):  slow
 //         "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-//id  6 (hex):
+//id  004 (hex):   .... X...
            "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
-//id  7 (hex):
+//id  005 (hex):   .... .X..
            "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
-//id  8 (hex):
+//id  006 (hex):   .... ..X.
            "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
-//id  9 (hex):
+//id  007 (hex):   .... ...X .... ....
            "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
-//id  a (hex):   fast
+//id  008 (hex):   fast  .... .... X... ....
            "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-//id  b (hex):   fast
+//id  009 (hex):   fast  .... .... .X.. ....
            "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
-//id  c (hex):   fast
+//id  00a (hex):   fast  .... .... ..X. ....
            "http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
-//id  d (hex):   fast
+//id  00b (hex):   fast  .... .... ...X ....
            "http://tty-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
-//id  e (hex):   fast, even it is in  us-east-1  cluster
+//id  00c (hex):   fast  .... .... .... X...
            "http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/",
-//id  f (hex):   acceptable?
+//id  00d (hex):   OK?   .... .... .... .X..
            "http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/",
-//id 10 (hex):   slow
+//id    (hex):   slow
 //         "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
-//id 11 (hex):   slow
+//id    (hex):   slow
 //         "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
-//id 12 (hex):   fast
+//id  00e (hex):   fast  .... .... .... ..X.
            "http://por-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 13 (hex):   fast
+//id  00f (hex):   fast  .... .... .... ...X .... .
            "http://que-por12que.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 14 (hex):   not yet update software
+//id    (hex):   not yet update software
 //         "http://bad-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
-//id 15 (hex):   not yet update software
+//id    (hex):   not yet update software
 //         "http://luc-badluc13.1d35.starter-us-east-1.openshiftapps.com/",
-//id 16 (hex):   fast
+//id  010 (hex):   fast  .... .... .... .... X... .
            "http://kis-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 17 (hex):
+//id  011 (hex):         .... .... .... .... .X.. .
            "http://sin-kissin14.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 18 (hex):   fast
+//id  012 (hex):   fast  .... .... .... .... ..X. .
            "http://fif-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
 //id    (hex):   [this is the default HUB. Actually the HUB can also be used to calculate hash, but doing so will occupy/load & slow-down the HUB, causing it to possibly MISS/FAIL receiving/accepting the desired nonce value/result sent by other cpu/nodes.]
 //         "http://tee-fif15tee.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 19 (hex):   quite fast, cannot compile/build new software into it
+//id    (hex):   quite fast, cannot compile/build new software into it
 //         "http://ssx-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1a (hex):   quite fast, cannot compile/build new software into it
+//id    (hex):   quite fast, cannot compile/build new software into it
 //         "http://tek-ssx16tek.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1b (hex):   quite fast
+//id    (hex):   quite fast
 //         "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1c (hex):
+//id    (hex):
 //         "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-//id 1d (hex):   fast
+//id  013 (hex):   fast   .... .... .... .... ...X .
            "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 1e (hex):   fast
+//id  014 (hex):   fast   .... .... .... .... .... X
            "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-//id 1f (hex):   fast, cannot compile/build new software into it
+//id    (hex):   fast, cannot compile/build new software into it
 //         "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
-//id 20 (hex):   fast, cannot compile/build new software into it
+//id    (hex):   fast, cannot compile/build new software into it
 //         "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
         };
 
