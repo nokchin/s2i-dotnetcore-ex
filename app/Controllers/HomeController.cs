@@ -80,22 +80,18 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://wha-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
 //id  003 (hex):   ...X ....
            "http://xab-whaxab1.193b.starter-ca-central-1.openshiftapps.com/",
-//id    (hex):  slow, loopcount counting
-//         "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
-//id    (hex):  slow
-//         "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
 //id  004 (hex):   .... X...
-           "http://east-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://east-4epal4.193b.starter-ca-central-1.openshiftapps.com/",
 //id  005 (hex):   .... .X..
-           "http://fsgo-epal4.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://fsgo-4epal4.193b.starter-ca-central-1.openshiftapps.com/",
 //id  006 (hex):   .... ..X.
            "http://first-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
 //id  007 (hex):   .... ...X .... ....
            "http://second-my5proj.193b.starter-ca-central-1.openshiftapps.com/",
 //id  008 (hex):   fast  .... .... X... ....
-           "http://norm-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://norm-re77ar.193b.starter-ca-central-1.openshiftapps.com/",
 //id  009 (hex):   fast  .... .... .X.. ....
-           "http://pick-re7ar.193b.starter-ca-central-1.openshiftapps.com/",
+           "http://pick-re77ar.193b.starter-ca-central-1.openshiftapps.com/",
 //id  00a (hex):   fast  .... .... ..X. ....
            "http://kit-semb9.a3c1.starter-us-west-1.openshiftapps.com/",
 //id  00b (hex):   fast  .... .... ...X ....
@@ -104,8 +100,7 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
            "http://cru-sep10.1d35.starter-us-east-1.openshiftapps.com/",
 //id  00d (hex):   OK?   .... .... .... .X..
            "http://doc-sep10.1d35.starter-us-east-1.openshiftapps.com/",
-//id    (hex):   slow
-//         "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/",
+
 //id    (hex):   slow
 //         "http://zar-e11e.1d35.starter-us-east-1.openshiftapps.com/",
 //id  00e (hex):   fast  .... .... .... ..X.
@@ -132,14 +127,20 @@ And on one-dimensional array,  .Length will return the same value as .GetLength(
 //         "http://chu-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
 //id    (hex):
 //         "http://lxa-chulxa17.1d35.starter-us-east-1.openshiftapps.com/",
-//id  013 (hex):   fast   .... .... .... .... ...X .
+//id  013 (hex):   fast   .... .... .... .... ...X ....
            "http://eig-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
-//id  014 (hex):   fast   .... .... .... .... .... X
+//id  014 (hex):   fast   .... .... .... .... .... X...
            "http://hte-eighte18.a3c1.starter-us-west-1.openshiftapps.com/",
 //id    (hex):   fast, cannot compile/build new software into it
 //         "http://twe-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
 //id    (hex):   fast, cannot compile/build new software into it
-//         "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/"
+//         "http://uis-twe20uis.1d35.starter-us-east-1.openshiftapps.com/",
+//id  015 (hex):  slow, loopcount counting   .... .... .... .... .... .X..
+           "http://cs-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  016 (hex):  slow   .... .... .... .... .... ..X.
+           "http://doe-fgush2.1d35.starter-us-east-1.openshiftapps.com/",
+//id  017 (hex):   slow  .... .... .... .... .... ...X
+           "http://gul-e11e.1d35.starter-us-east-1.openshiftapps.com/"
         };
 
 
